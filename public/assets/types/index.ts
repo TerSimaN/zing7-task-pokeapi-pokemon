@@ -1,4 +1,4 @@
-import noraml_type from './TeraGem_Normal.png';
+import normal_type from './TeraGem_Normal.png';
 import fighting_type from './TeraGem_Fighting.png';
 import flying_type from './TeraGem_Flying.png';
 import poison_type from './TeraGem_Poison.png';
@@ -17,9 +17,12 @@ import dragon_type from './TeraGem_Dragon.png';
 import dark_type from './TeraGem_Dark.png';
 import fairy_type from './TeraGem_Fairy.png';
 import stellar_type from './TeraGem_Stellar.png';
+import unknown_type from './TeraGem_Unknown.png';
+import shadow_type from './TeraGem_Shadow.png';
+import no_image_type from './no_image_type.png';
 
 export {
-    noraml_type,
+    normal_type,
     fighting_type,
     flying_type,
     poison_type,
@@ -37,5 +40,8 @@ export {
     dragon_type,
     dark_type,
     fairy_type,
-    stellar_type
+    stellar_type,
+    unknown_type,
+    shadow_type,
+    no_image_type
 }
