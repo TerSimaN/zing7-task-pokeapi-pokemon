@@ -11,7 +11,7 @@ const Filter = () => {
     return (
         <section className="sm:p-0 p-4">
             <div className="flex flex-wrap justify-between items-start">
-                <div className="flex items-center lg:order-2">
+                <div className="flex sm:items-center sm:justify-normal justify-between sm:w-auto w-full lg:order-2">
                     <form className="hidden lg:inline-block w-full" id="search-form">
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -34,7 +34,7 @@ const Filter = () => {
                     </button>
                 </div>
                 <div className={`${searchOpen ? `` : `hidden`}`}>
-                    <form className="flex items-center sm:mt-0 mt-4">
+                    <form className="lg:hidden flex items-center sm:mt-0 mt-4">
                         <div className="relative w-full">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg className="text-gray-500 size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,7 @@ const Filter = () => {
                 </div>
                 <div className={`${filterOpen ? `` : `hidden`} lg:block lg:mt-0 mt-4`}>
                     <h3 className="font-inter font-medium text-lg text-gray-900 mb-3">Choose type:</h3>
-                    <ul className="grid md:grid-cols-8 sm:grid-cols-5 grid-cols-3 gap-4 font-inter w-full">
+                    <ul className="grid sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 grid-cols-3 gap-4 font-inter w-full">
                         {types.map((type, index) => (
                             <li key={index}>
                                 <input type="checkbox" id={`${type.typeName}-type-option`} value={type.typeName} className="hidden peer" />
