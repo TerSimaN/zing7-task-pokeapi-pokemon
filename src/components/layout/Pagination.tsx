@@ -1,26 +1,21 @@
 "use client";
 
+import { createPageNumbersArray } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
-
-const pageNumbers = [
-    { href: '#', number: '1' },
-    { href: '#', number: '2' },
-    { href: '#', number: '3' },
-    { href: '#', number: '4' },
-    { href: '#', number: '5' },
-];
 
 const Pagination = (props: { offset: number, count: number }) => {
     const [currentPage, setCurrentPage] = useState(0);
 
+    let pageNumbers = createPageNumbersArray(props.count);
+
     return (
-        <footer className="sm:flex sm:items-center sm:justify-between bg-white rounded-lg sm:p-6 xl:p-8 p-4 w-full">
+        <footer className="sm:flex sm:items-center sm:justify-between bg-white rounded-lg sm:px-0 px-4 sm:py-6 xl:py-8 py-4 w-full">
             <span className="text-sm text-gray-700 sm:mb-0 mb-4">
                 Showing <span className="font-semibold text-gray-900">{1 + props.offset}</span> to <span className="font-semibold text-gray-900">{50 + props.offset}</span> of <span className="font-semibold text-gray-900">{props.count}</span> Entries
             </span>
             <nav>
-                <ul className="flex items-center -space-x-px font-inter text-sm h-8">
+                <ul className="flex items-center -space-x-px font-inter text-sm overflow-x-auto h-8">
                     <li>
                         <Link
                             href="#"
