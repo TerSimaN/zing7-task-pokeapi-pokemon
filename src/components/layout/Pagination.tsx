@@ -11,13 +11,13 @@ const pageNumbers = [
     { href: '#', number: '5' },
 ];
 
-const Pagination = () => {
+const Pagination = (props: { offset: number, count: number }) => {
     const [currentPage, setCurrentPage] = useState(0);
 
     return (
         <footer className="sm:flex sm:items-center sm:justify-between bg-white rounded-lg sm:p-6 xl:p-8 p-4 w-full">
             <span className="text-sm text-gray-700 sm:mb-0 mb-4">
-                Showing <span className="font-semibold text-gray-900">1</span> to <span className="font-semibold text-gray-900">50</span> of <span className="font-semibold text-gray-900">1302</span> Entries
+                Showing <span className="font-semibold text-gray-900">{1 + props.offset}</span> to <span className="font-semibold text-gray-900">{50 + props.offset}</span> of <span className="font-semibold text-gray-900">{props.count}</span> Entries
             </span>
             <nav>
                 <ul className="flex items-center -space-x-px font-inter text-sm h-8">

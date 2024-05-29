@@ -10,16 +10,16 @@ import MainDescriptionTable from "@/components/layout/Tables/MainDescriptionTabl
 import MovesTable from "@/components/layout/Tables/MovesTable";
 import PastTypesTable from "@/components/layout/Tables/PastTypesTable";
 import SpritesTable from "@/components/layout/Tables/SpritesTable";
-import { testPokemon } from "@/config/constants";
+import { getPokemonById } from "@/lib/actions/pokemon";
 
 type Params = {
     params: { id: string },
     searchParams: { [key: string]: string | string[] | undefined }
 }
 
-const data = testPokemon;
+export default async function PokemonDetails(props: Params) {
+    const data = (await getPokemonById(props.params.id)) as PokeAPI.Pokemon.Pokemon;
 
-export default function PokemonDetails(props: Params) {
     return (
         <main className="sm:px-12 lg:px-24 px-4 sm:py-8 py-4 min-h-screen">
             <div className="grid lg:grid-cols-5 grid-cols-1 lg:gap-8 max-w-screen-xl">
