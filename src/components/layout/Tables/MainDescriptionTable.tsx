@@ -2,9 +2,9 @@ import Link from "next/link"
 
 const MainDescriptionTable = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
     return (
-        <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8">
-            <table className="font-inter text-sm text-left text-gray-500 w-full">
-                <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+        <div className="overflow-x-auto shadow-md sm:rounded-lg mt-4">
+            <table className="font-inter text-sm text-left text-gray-500 whitespace-nowrap w-full">
+                <thead>
                     <tr>
                         <th scope="col" className="min-w-48"></th>
                         <th scope="col" className="whitespace-nowrap w-full"></th>
@@ -12,7 +12,7 @@ const MainDescriptionTable = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                 </thead>
                 <tbody>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
-                        <th scope="row" className="font-medium text-gray-900 px-6 py-4 whitespace-nowrap">
+                        <th scope="row" className="font-medium text-gray-900 px-6 py-4">
                             Name
                         </th>
                         <td className="px-6 py-4 capitalize">
@@ -20,7 +20,7 @@ const MainDescriptionTable = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                         </td>
                     </tr>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
-                        <th scope="row" className="font-medium text-gray-900 px-6 py-4 whitespace-nowrap">
+                        <th scope="row" className="font-medium text-gray-900 px-6 py-4">
                             Base experience
                         </th>
                         <td className="px-6 py-4">
@@ -28,7 +28,7 @@ const MainDescriptionTable = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                         </td>
                     </tr>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
-                        <th scope="row" className="font-medium text-gray-900 px-6 py-4 whitespace-nowrap">
+                        <th scope="row" className="font-medium text-gray-900 px-6 py-4">
                             Location area encounters
                         </th>
                         <td className="px-6 py-4">
@@ -38,7 +38,7 @@ const MainDescriptionTable = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                         </td>
                     </tr>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
-                        <th scope="row" className="font-medium text-gray-900 px-6 py-4 whitespace-nowrap">
+                        <th scope="row" className="font-medium text-gray-900 px-6 py-4">
                             Height
                         </th>
                         <td className="px-6 py-4">
@@ -46,7 +46,7 @@ const MainDescriptionTable = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                         </td>
                     </tr>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
-                        <th scope="row" className="font-medium text-gray-900 px-6 py-4 whitespace-nowrap">
+                        <th scope="row" className="font-medium text-gray-900 px-6 py-4">
                             Weight
                         </th>
                         <td className="px-6 py-4">
@@ -54,7 +54,7 @@ const MainDescriptionTable = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                         </td>
                     </tr>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
-                        <th scope="row" className="font-medium text-gray-900 px-6 py-4 whitespace-nowrap">
+                        <th scope="row" className="font-medium text-gray-900 px-6 py-4">
                             Is default
                         </th>
                         <td className="px-6 py-4 capitalize">
@@ -62,7 +62,7 @@ const MainDescriptionTable = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                         </td>
                     </tr>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
-                        <th scope="row" className="font-medium text-gray-900 px-6 py-4 whitespace-nowrap">
+                        <th scope="row" className="font-medium text-gray-900 px-6 py-4">
                             Order
                         </th>
                         <td className="px-6 py-4">
