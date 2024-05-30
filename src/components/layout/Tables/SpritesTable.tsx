@@ -25,7 +25,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.front_default}
+                                src={props.data.sprites.front_default ?? no_image}
                                 alt="front_default"
                                 width={96}
                                 height={96}
@@ -34,7 +34,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                         </td>
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.front_shiny}
+                                src={props.data.sprites.front_shiny ?? no_image}
                                 alt="front_shiny"
                                 width={96}
                                 height={96}
@@ -63,7 +63,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.back_default}
+                                src={props.data.sprites.back_default ?? no_image}
                                 alt="back_default"
                                 width={96}
                                 height={96}
@@ -72,7 +72,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                         </td>
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.back_shiny}
+                                src={props.data.sprites.back_shiny ?? no_image}
                                 alt="back_shiny"
                                 width={96}
                                 height={96}
