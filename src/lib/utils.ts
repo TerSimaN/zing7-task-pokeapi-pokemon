@@ -14,7 +14,7 @@ export function createPageNumbersArray(total: number) {
     let pageNumbers: { href: string, number: string }[] = [];
     let pages: number = Number.parseInt(((total / 50) + (total % 50)).toFixed());
 
-    for (let index = 1; index <= pages; index++) {
+    for (let index = 1; index < pages; index++) {
         if (index === 1) {
             pageNumbers.push({ href: '/', number: `${index}` });
         } else {

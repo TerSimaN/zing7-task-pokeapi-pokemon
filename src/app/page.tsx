@@ -22,7 +22,7 @@ export default async function Home(props: Params) {
     <main className="flex flex-col sm:justify-between sm:px-24 xl:pt-12 pt-4 min-h-screen">
       <Filter />
       <PokemonGrid resourceArray={resourceArray} />
-      <Pagination offset={offset} count={pokemonList.count} />
+      <Pagination offset={offset} pokeList={pokemonList} />
     </main>
   );
 }
