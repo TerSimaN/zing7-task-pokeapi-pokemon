@@ -8,7 +8,7 @@ const PokemonGrid = (props: { resourceArray: PokeAPI.Utility.NamedAPIResource[] 
     return (
         <section className="bg-white">
             <div className="lg:px-6 sm:px-4 px-8 lg:py-16 py-8 mx-auto max-w-screen-xl">
-                <div className="grid gap-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                     {props.resourceArray.map(async (resource, index) => {
                         let pokemon = (await getPokemonByName(resource.name)) as PokeAPI.Pokemon.Pokemon;
                         return (
