@@ -66,11 +66,11 @@ const Pagination = (props: { offset: number, pokeList: PokeAPI.Utility.NamedAPIR
             <span className="text-sm text-gray-700 min-w-fit">
                 Showing <span className="font-semibold text-gray-900">{fromEntry}</span> to <span className="font-semibold text-gray-900">{toEntry}</span> of <span className="font-semibold text-gray-900">{count}</span> Entries
             </span>
-            <nav className="flex items-center -space-x-px font-inter text-sm sm:mt-0 mt-4 h-8 sm:max-w-sm lg:max-w-xl 2xl:max-w-none">
+            <nav className="flex items-center md:justify-normal justify-between -space-x-px font-inter text-sm sm:mt-0 mt-4 h-8 sm:max-w-sm lg:max-w-xl 2xl:max-w-none">
                 <button onClick={() => handlePreviousPage()}>
                     <PreviousPageButton href={`?page=${previousPage}`} />
                 </button>
-                <ul className="flex items-center -space-x-px overflow-x-auto">
+                <ul className="hidden md:flex items-center -space-x-px overflow-x-auto">
                     {pageNumbers.map((pageNumber, index) => (
                         <li key={index}>
                             <Link
