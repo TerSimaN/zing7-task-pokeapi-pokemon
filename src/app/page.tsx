@@ -1,8 +1,10 @@
 import Filter from "@/components/layout/Filter";
+import LoadingGrid from "@/components/layout/LoadingGrid";
 import Pagination from "@/components/layout/Pagination";
 import PokemonGrid from "@/components/sections/PokemonGrid";
 import { getPokemonList } from "@/lib/actions/pokemon";
 import { getOffsetFromPage } from "@/lib/utils";
+import { Suspense } from "react";
 
 type Params = {
   searchParams: {
@@ -21,7 +23,9 @@ export default async function Home(props: Params) {
   return (
     <main className="flex flex-col sm:justify-between sm:px-24 xl:pt-12 pt-4 min-h-screen">
       <Filter />
-      <PokemonGrid resourceArray={resourceArray} />
+      <Suspense fallback={<LoadingGrid />}>
+        <PokemonGrid resourceArray={resourceArray} />
+      </Suspense>
       <Pagination offset={offset} pokeList={pokemonList} />
     </main>
   );

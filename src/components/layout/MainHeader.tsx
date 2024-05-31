@@ -7,12 +7,10 @@ const MainHeader = () => {
         <header>
             <nav className="bg-white border-gray-200 lg:px-6 px-4 py-3">
                 <div className="flex flex-wrap sm:justify-between justify-center items-center mx-auto max-w-screen-xl">
-                    <Link href={'/'}>
-                        <Image
-                            src={pokemon_logo}
-                            alt="Pokemon Logo"
-                        />
-                    </Link>
+                    <Image
+                        src={pokemon_logo}
+                        alt="Pokemon Logo"
+                    />
                     <div className="flex items-end gap-x-2">
                         <span className="font-inter font-semibold select-none">powered by</span>
                         <Link href={'https://pokeapi.co/docs/v2'}>

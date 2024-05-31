@@ -17,48 +17,20 @@ const Pagination = (props: { offset: number, pokeList: PokeAPI.Utility.NamedAPIR
     let toEntry: number = (50 + props.offset) > count ? count : (50 + props.offset);
     let pageNumbers = createPageNumbersArray(count);
 
-    function handleNextPage() {
-        let value = current + 1;
-        if (value < pageNumbers.length) {
-            setCurrent(value);
-        }
+    function handlePageChange(newPage: number) {
+        let newPreviousPage = newPage - 1;
+        let newNextPage = newPage + 1;
 
-        let newCurrentPageValue = nextPage;
-        let newPreviousPageValue = newCurrentPageValue - 1;
-        let newNextPageValue = newCurrentPageValue + 1;
-
-        if (newPreviousPageValue > 0) {
-            setPreviousPage(newPreviousPageValue);
+        if (newPreviousPage > 0) {
+            setPreviousPage(newPreviousPage);
         } else {
             setPreviousPage(1);
         }
 
-        if (newNextPageValue <= pageNumbers.length) {
-            setNextPage(newNextPageValue);
+        if (newNextPage <= pageNumbers.length) {
+            setNextPage(newNextPage);
         }
-        setCurrentPage(newCurrentPageValue);
-    }
-
-    function handlePreviousPage() {
-        let value = current - 1;
-        if (value > -1) {
-            setCurrent(value);
-        }
-
-        let newCurrentPageValue = previousPage;
-        let newPreviousPageValue = newCurrentPageValue - 1;
-        let newNextPageValue = newCurrentPageValue + 1;
-
-        if (newPreviousPageValue > 0) {
-            setPreviousPage(newPreviousPageValue);
-        } else {
-            setPreviousPage(1);
-        }
-
-        if (newNextPageValue <= pageNumbers.length) {
-            setNextPage(newNextPageValue);
-        }
-        setCurrentPage(newCurrentPageValue);
+        setCurrentPage(newPage);
     }
 
     return (
@@ -67,7 +39,13 @@ const Pagination = (props: { offset: number, pokeList: PokeAPI.Utility.NamedAPIR
                 Showing <span className="font-semibold text-gray-900">{fromEntry}</span> to <span className="font-semibold text-gray-900">{toEntry}</span> of <span className="font-semibold text-gray-900">{count}</span> Entries
             </span>
             <nav className="flex items-center md:justify-normal justify-between -space-x-px font-inter text-sm sm:mt-0 mt-4 h-8 sm:max-w-sm lg:max-w-xl 2xl:max-w-none">
-                <button onClick={() => handlePreviousPage()}>
+                <button onClick={() => {
+                    let value = current - 1;
+                    if (value > -1) {
+                        setCurrent(value);
+                    }
+                    handlePageChange(previousPage);
+                }}>
                     <PreviousPageButton href={`?page=${previousPage}`} />
                 </button>
                 <ul className="hidden md:flex items-center -space-x-px overflow-x-auto">
@@ -81,27 +59,22 @@ const Pagination = (props: { offset: number, pokeList: PokeAPI.Utility.NamedAPIR
                                         `text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700`
                                     } px-3 h-8`}
                                 onClick={() => {
+                                    let pageValue = parseInt(pageNumber.number);
                                     setCurrent(index);
-                                    setCurrentPage(parseInt(pageNumber.number));
-
-                                    let prevPageValue = parseInt(pageNumber.number) - 1;
-                                    if (prevPageValue > 0) {
-                                        setPreviousPage(prevPageValue);
-                                    } else {
-                                        setPreviousPage(1);
-                                    }
-
-                                    let nextPageValue = parseInt(pageNumber.number) + 1;
-                                    if (nextPageValue <= pageNumbers.length) {
-                                        setNextPage(nextPageValue);
-                                    }
+                                    handlePageChange(pageValue);
                                 }}>
                                 {pageNumber.number}
                             </Link>
                         </li>
                     ))}
                 </ul>
-                <button onClick={() => handleNextPage()}>
+                <button onClick={() => {
+                    let value = current + 1;
+                    if (value < pageNumbers.length) {
+                        setCurrent(value);
+                    }
+                    handlePageChange(nextPage);
+                }}>
                     <NextPageButton href={`?page=${nextPage}`} />
                 </button>
             </nav>
