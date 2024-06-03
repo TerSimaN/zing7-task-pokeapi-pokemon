@@ -19,6 +19,7 @@ import fairy_type from './TeraGem_Fairy.png';
 import stellar_type from './TeraGem_Stellar.png';
 import unknown_type from './TeraGem_Unknown.png';
 import shadow_type from './TeraGem_Shadow.png';
+import placeholder_type from './TeraGem_Placeholder.png';
 import no_image_type from './no_image_type.png';
 
 export {
@@ -43,5 +44,6 @@ export {
     stellar_type,
     unknown_type,
     shadow_type,
+    placeholder_type,
     no_image_type
 }
