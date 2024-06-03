@@ -21,7 +21,7 @@ export const types = [
     { typeName: 'dragon', typeIconSrc: dragon_type, typeIconAlt: 'dragon_type' },
     { typeName: 'dark', typeIconSrc: dark_type, typeIconAlt: 'dark_type' },
     { typeName: 'fairy', typeIconSrc: fairy_type, typeIconAlt: 'fairy_type' },
-    { typeName: 'stellar', typeIconSrc: stellar_type, typeIconAlt: 'stellar_type' },
-    { typeName: 'unknown', typeIconSrc: unknown_type, typeIconAlt: 'unknown_type' },
-    { typeName: 'shadow', typeIconSrc: shadow_type, typeIconAlt: 'shadow_type' },
+    // { typeName: 'stellar', typeIconSrc: stellar_type, typeIconAlt: 'stellar_type' },
+    // { typeName: 'unknown', typeIconSrc: unknown_type, typeIconAlt: 'unknown_type' },
+    // { typeName: 'shadow', typeIconSrc: shadow_type, typeIconAlt: 'shadow_type' },
 ];

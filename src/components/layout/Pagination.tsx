@@ -6,13 +6,13 @@ import { useState } from "react";
 import PreviousPageButton from "../ui/PreviousPageButton";
 import NextPageButton from "../ui/NextPageButton";
 
-const Pagination = (props: { offset: number, pokeList: PokeAPI.Utility.NamedAPIResourceList }) => {
+const Pagination = (props: { offset: number, entries: number }) => {
     const [current, setCurrent] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [previousPage, setPreviousPage] = useState(1);
     const [nextPage, setNextPage] = useState(currentPage + 1);
 
-    let count: number = props.pokeList.count;
+    let count: number = props.entries;
     let fromEntry: number = 1 + props.offset;
     let toEntry: number = (50 + props.offset) > count ? count : (50 + props.offset);
     let pageNumbers = createPageNumbersArray(count);

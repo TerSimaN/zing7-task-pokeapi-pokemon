@@ -128,12 +128,12 @@ namespace PokeAPI {
             name: string,
             damage_relations: TypeRelations,
             past_damage_relations: TypeRelationsPast[],
-            game_indices: Utility.GenerationGameIndex,
+            game_indices: Utility.GenerationGameIndex[],
             generation: Utility.NamedAPIResource,
             move_damage_class: Utility.NamedAPIResource
-            names: Utility.Name
-            pokemon: TypePokemon,
-            moves: Utility.NamedAPIResource
+            names: Utility.Name[]
+            pokemon: TypePokemon[],
+            moves: Utility.NamedAPIResource[]
         }
 
         type TypePokemon = {
@@ -142,12 +142,12 @@ namespace PokeAPI {
         }
 
         type TypeRelations = {
-            no_damage_to: Utility.NamedAPIResource,
-            half_damage_to: Utility.NamedAPIResource,
-            double_damage_to: Utility.NamedAPIResource,
-            no_damage_from: Utility.NamedAPIResource,
-            half_damage_from: Utility.NamedAPIResource,
-            double_damage_from: Utility.NamedAPIResource
+            no_damage_to: Utility.NamedAPIResource[],
+            half_damage_to: Utility.NamedAPIResource[],
+            double_damage_to: Utility.NamedAPIResource[],
+            no_damage_from: Utility.NamedAPIResource[],
+            half_damage_from: Utility.NamedAPIResource[],
+            double_damage_from: Utility.NamedAPIResource[]
         }
 
         type TypeRelationsPast = {
