@@ -64,25 +64,21 @@ export async function getTypePokemonArray(filter: string | string[]) {
     };
 
     if (Array.isArray(filter)) {
-        if (filter.length) {
-            console.log("Filter as array:", filter);
-            for (const filterObj of filter) {
-                type = (await getTypeByName(filterObj)) as PokeAPI.Types.Type;
-                for (const typePokemon of type.pokemon) {
-                    if (!typePokemonArray.includes(typePokemon)) {
-                        typePokemonArray.push(typePokemon);
-                    }
+        console.log("Filter as array:", filter);
+        for (const filterObj of filter) {
+            type = (await getTypeByName(filterObj)) as PokeAPI.Types.Type;
+            for (const typePokemon of type.pokemon) {
+                if (!typePokemonArray.includes(typePokemon)) {
+                    typePokemonArray.push(typePokemon);
                 }
             }
         }
-    } else if (typeof filter === "string") {
-        if (filter !== '') {
-            console.log("Filter as string:", filter);
-            type = (await getTypeByName(filter)) as PokeAPI.Types.Type;
-            for (const pokemon of type.pokemon) {
-                if (!typePokemonArray.includes(pokemon)) {
-                    typePokemonArray.push(pokemon);
-                }
+    } else if (filter !== '') {
+        console.log("Filter as string:", filter);
+        type = (await getTypeByName(filter)) as PokeAPI.Types.Type;
+        for (const pokemon of type.pokemon) {
+            if (!typePokemonArray.includes(pokemon)) {
+                typePokemonArray.push(pokemon);
             }
         }
     }

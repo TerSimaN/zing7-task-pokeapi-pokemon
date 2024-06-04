@@ -16,12 +16,12 @@ type Params = {
 
 export default async function Home(props: Params) {
   let offset: number = getOffsetFromProps(props.searchParams.page);
-  let entries: number = 0;
   let filter: string | string[] = getFiltersFromParams(props.searchParams.filter);
-  let resourceArray: PokeAPI.Utility.NamedAPIResource[] = [];
-  let typePokemonArray = (await getTypePokemonArray(filter));
+  let entries: number = 0;
 
-  let pokemonList = (await getPokemonList(offset)) as PokeAPI.Utility.NamedAPIResourceList;
+  let resourceArray: PokeAPI.Utility.NamedAPIResource[] = [];
+  let pokemonList:PokeAPI.Utility.NamedAPIResourceList;
+  let typePokemonArray = (await getTypePokemonArray(filter));
 
   if (typePokemonArray.length) {
     for (const typePokemon of typePokemonArray) {
@@ -31,6 +31,7 @@ export default async function Home(props: Params) {
     }
     entries = resourceArray.length;
   } else {
+    pokemonList = (await getPokemonList(offset)) as PokeAPI.Utility.NamedAPIResourceList;
     entries = pokemonList.count;
     resourceArray = resourceArray.concat(pokemonList.results);
   }
