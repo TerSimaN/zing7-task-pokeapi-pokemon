@@ -18,11 +18,11 @@ export async function getPokemonById(id: string) {
     return data;
 }
 
-export async function getPokemonArray(pokemonList: PokeAPI.Utility.NamedAPIResourceList) {
+export async function getPokemonArray(resourceArray: PokeAPI.Utility.NamedAPIResource[]) {
     let pokeArray: PokeAPI.Pokemon.Pokemon[] = [];
 
-    pokemonList.results.forEach(async (result) => {
-        let pokemonData = await getPokemonByName(result.name);
+    resourceArray.forEach(async (resource) => {
+        let pokemonData = await getPokemonByName(resource.name);
         pokeArray.push(pokemonData);
     });
 
