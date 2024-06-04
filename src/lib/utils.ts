@@ -12,9 +12,12 @@ export function getIconByTypeName(typeName: string) {
 
 export function createPageNumbersArray(total: number) {
     let pageNumbers: { href: string, number: string }[] = [];
-    let pages: number = Number.parseInt(((total / 50) + (total % 50)).toFixed());
+    let pages: number = parseInt((total / 50).toFixed());
+    if ((pages * 50) < total) {
+        pages += 1;
+    }
 
-    for (let index = 1; index < pages; index++) {
+    for (let index = 1; index <= pages; index++) {
         if (index === 1) {
             pageNumbers.push({ href: '/', number: `${index}` });
         } else {
@@ -25,10 +28,20 @@ export function createPageNumbersArray(total: number) {
     return pageNumbers;
 }
 
-export function getOffsetFromPage(page: string | undefined): number {
-    if (typeof page === "undefined") {
+export function getOffsetFromProps(props: string | undefined): number {
+    if (typeof props === "undefined") {
         return 0;
     } else {
-        return (Number.parseInt(page) - 1) * 50;
+        return (parseInt(props) - 1) * 50;
+    }
+}
+
+export function getFiltersFromParams(params: string | undefined): string | string[] {
+    if (typeof params === "undefined") {
+        return '';
+    } else if (params.includes("&")) {
+        return params.split("&");
+    } else {
+        return params;
     }
 }

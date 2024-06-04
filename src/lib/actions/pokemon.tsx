@@ -28,3 +28,8 @@ export async function getPokemonArray(pokemonList: PokeAPI.Utility.NamedAPIResou
 
     return pokeArray;
 }
+
+export async function searchFilter(formData: FormData) {
+    const query = formData.get("search-bar");
+    alert(`You searched for '${query}'`);
+}

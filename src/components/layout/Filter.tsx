@@ -3,6 +3,8 @@
 import Image from "next/image"
 import { useState } from "react"
 import { types } from "@/config/constants"
+import { handleTypeChange } from "@/lib/actions/pokemonType"
+import { searchFilter } from "@/lib/actions/pokemon"
 
 const Filter = () => {
     const [searchOpen, setSearchOpen] = useState(false);
@@ -12,14 +14,14 @@ const Filter = () => {
         <section className="sm:p-0 p-4">
             <div className="flex flex-wrap justify-between items-start">
                 <div className="flex sm:items-center sm:justify-normal justify-between sm:w-auto w-full lg:order-2">
-                    <form className="hidden lg:inline-block w-full" id="search-form">
+                    <form className="hidden lg:inline-block w-full" action={searchFilter} id="search-form">
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg className="text-gray-500 size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </div>
-                            <input className="block bg-gray-50 border border-gray-300 rounded-lg pl-10 pr-4 py-2 w-full placeholder:font-inter placeholder:text-sm placeholder:text-gray-900/50" id="search-bar" type="search" placeholder="Search" />
+                            <input className="block bg-gray-50 border border-gray-300 rounded-lg pl-10 pr-4 py-2 w-full placeholder:font-inter placeholder:text-sm placeholder:text-gray-900/50" id="search-bar" name="search-bar" type="search" placeholder="Search" />
                         </div>
                     </form>
                     <button className={`lg:hidden inline-flex items-center rounded-lg font-inter font-medium text-sm text-gray-800 p-2 ${filterOpen ? `bg-green-300 focus:outline-none focus:ring-2 focus:ring-gray-200` : `hover:bg-green-100`}`} type="button" onClick={() => setFilterOpen(!filterOpen)}>
@@ -34,14 +36,14 @@ const Filter = () => {
                     </button>
                 </div>
                 <div className={`${searchOpen ? `` : `hidden`}`}>
-                    <form className="lg:hidden flex items-center sm:mt-0 mt-4">
+                    <form className="lg:hidden flex items-center sm:mt-0 mt-4" action={searchFilter}>
                         <div className="relative w-full">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg className="text-gray-500 size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </div>
-                            <input className="block bg-gray-50 border border-gray-300 rounded-lg pl-10 p-2.5 py-2 w-full placeholder:font-inter placeholder:text-sm placeholder:text-gray-900/50" id="search-bar" type="search" placeholder="Search" />
+                            <input className="block bg-gray-50 border border-gray-300 rounded-lg pl-10 p-2.5 py-2 w-full placeholder:font-inter placeholder:text-sm placeholder:text-gray-900/50" id="search-bar" name="search-bar" type="search" placeholder="Search" />
                         </div>
                         <button className="inline-flex items-center bg-blue-700 border border-blue-700 rounded-lg font-inter font-medium text-sm text-white p-2.5 ml-2" type="submit">
                             <svg className="mr-2 size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +58,7 @@ const Filter = () => {
                     <ul className="grid sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 grid-cols-3 gap-4 font-inter w-full">
                         {types.map((type, index) => (
                             <li key={index}>
-                                <input type="checkbox" id={`${type.typeName}-type-option`} value={type.typeName} className="hidden peer" />
+                                <input type="checkbox" id={`${type.typeName}-type-option`} name="type" value={type.typeName} className="hidden peer" onChange={(e) => handleTypeChange(e.target.value)} />
                                 <label className="inline-flex items-center justify-between bg-white border-2 border-gray-200 rounded-lg text-gray-500 p-1 w-full cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50" htmlFor={`${type.typeName}-type-option`}>
                                     <div className="flex items-center">
                                         <Image src={type.typeIconSrc} alt={type.typeIconAlt} className="lg:size-8 size-6" />
