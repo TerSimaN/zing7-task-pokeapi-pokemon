@@ -20,7 +20,7 @@ export default async function Home(props: Params) {
   let entries: number = 0;
 
   let resourceArray: PokeAPI.Utility.NamedAPIResource[] = [];
-  let pokemonList:PokeAPI.Utility.NamedAPIResourceList;
+  let pokemonList: PokeAPI.Utility.NamedAPIResourceList;
   let typePokemonArray = (await getTypePokemonArray(filter));
 
   if (typePokemonArray.length) {
