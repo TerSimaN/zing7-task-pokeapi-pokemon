@@ -1,10 +1,4 @@
-"use server";
-
 import { poke_api_url } from "@/config/constants";
-import { redirect } from "next/navigation";
-
-const searchParams = new URLSearchParams();
-let pairs: string[] = [];
 
 export async function getTypeList() {
     let response = await fetch(`${poke_api_url}/type?limit=21`);
@@ -84,21 +78,4 @@ export async function getTypePokemonArray(filter: string | string[]) {
     }
 
     return typePokemonArray;
-}
-
-export async function handleTypeChange(value: string) {
-    if (!pairs.includes(value)) {
-        pairs.push(value);
-    } else {
-        let start = pairs.indexOf(value);
-        pairs.splice(start, 1);
-    }
-
-    let queryString: string = pairs.join("&");
-    if (queryString !== '') {
-        searchParams.set("filter", queryString);
-        redirect(`/?${searchParams.toString()}`);
-    } else {
-        redirect('/');
-    }
 }

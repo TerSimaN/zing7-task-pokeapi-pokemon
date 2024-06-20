@@ -39,6 +39,20 @@ namespace PokeAPI {
         }
     }
 
+    namespace Game {
+        type Generation = {
+            id: number,
+            name: string,
+            abilities: PokeAPI.Utility.NamedAPIResource[],
+            names: PokeAPI.Utility.Name[],
+            main_region: PokeAPI.Utility.NamedAPIResource,
+            moves: PokeAPI.Utility.NamedAPIResource[]
+            pokemon_species: PokeAPI.Utility.NamedAPIResource[],
+            types: PokeAPI.Utility.NamedAPIResource[],
+            version_groups: PokeAPI.Utility.NamedAPIResource[]
+        }
+    }
+
     namespace Pokemon {
         type Pokemon = {
             id: number,
@@ -106,12 +120,12 @@ namespace PokeAPI {
         }
 
         type PokemonSprites = {
-            front_default: string,
-            front_shiny: string,
+            front_default: string | null,
+            front_shiny: string | null,
             front_female: string | null,
             front_shiny_female: string | null,
-            back_default: string,
-            back_shiny: string,
+            back_default: string | null,
+            back_shiny: string | null,
             back_female: string | null,
             back_shiny_female: string | null
         }

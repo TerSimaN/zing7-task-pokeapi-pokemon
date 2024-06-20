@@ -1,4 +1,4 @@
-import { types } from "@/config/constants";
+import { poke_api_url, types } from "@/config/constants";
 import { no_image_type } from "../../public/assets/types";
 
 export function getIconByTypeName(typeName: string) {
@@ -28,7 +28,15 @@ export function createPageNumbersArray(total: number) {
     return pageNumbers;
 }
 
-export function getOffsetFromProps(props: string | undefined): number {
+export function getPokemonIdFromResultUrl(resultUrl: string) {
+    let start = resultUrl.indexOf(poke_api_url) + poke_api_url.length;
+    let strToSplit = resultUrl.substring(start);
+    let arrayToSearch = strToSplit.split('/');
+    let id = arrayToSearch.find((value) => !Number.isNaN(parseInt(value)));
+    return (typeof id === "undefined") ? '' : id;
+}
+
+export function getOffsetFromParams(props: string | undefined): number {
     if (typeof props === "undefined") {
         return 0;
     } else {
@@ -36,11 +44,11 @@ export function getOffsetFromProps(props: string | undefined): number {
     }
 }
 
-export function getFiltersFromParams(params: string | undefined): string | string[] {
+export function getFiltersFromParams(params: string | string[] | undefined): string | string[] {
     if (typeof params === "undefined") {
         return '';
-    } else if (params.includes("&")) {
-        return params.split("&");
+    } else if (Array.isArray(params)) {
+        return params;
     } else {
         return params;
     }
