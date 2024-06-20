@@ -1,4 +1,4 @@
-import { bug_type, dark_type, dragon_type, electric_type, fairy_type, fighting_type, fire_type, flying_type, ghost_type, grass_type, ground_type, ice_type, normal_type, poison_type, psychic_type, rock_type, shadow_type, steel_type, stellar_type, unknown_type, water_type } from "../../public/assets/types";
+import { bug_type, dark_type, dragon_type, electric_type, fairy_type, fighting_type, fire_type, flying_type, ghost_type, grass_type, ground_type, ice_type, no_image_type, normal_type, poison_type, psychic_type, rock_type, shadow_type, steel_type, stellar_type, unknown_type, water_type } from "../../public/assets/types";
 
 export const poke_api_url = 'https://pokeapi.co/api/v2';
 
@@ -24,4 +24,16 @@ export const types = [
     // { typeName: 'stellar', typeIconSrc: stellar_type, typeIconAlt: 'stellar_type' },
     // { typeName: 'unknown', typeIconSrc: unknown_type, typeIconAlt: 'unknown_type' },
     // { typeName: 'shadow', typeIconSrc: shadow_type, typeIconAlt: 'shadow_type' },
+];
+
+export const generations = [
+    { genName: 'gen-1', genId: '1', genIconSrc: no_image_type, genIconAlt: '' },
+    { genName: 'gen-2', genId: '2', genIconSrc: no_image_type, genIconAlt: '' },
+    { genName: 'gen-3', genId: '3', genIconSrc: no_image_type, genIconAlt: '' },
+    { genName: 'gen-4', genId: '4', genIconSrc: no_image_type, genIconAlt: '' },
+    { genName: 'gen-5', genId: '5', genIconSrc: no_image_type, genIconAlt: '' },
+    { genName: 'gen-6', genId: '6', genIconSrc: no_image_type, genIconAlt: '' },
+    { genName: 'gen-7', genId: '7', genIconSrc: no_image_type, genIconAlt: '' },
+    { genName: 'gen-8', genId: '8', genIconSrc: no_image_type, genIconAlt: '' },
+    { genName: 'gen-9', genId: '9', genIconSrc: no_image_type, genIconAlt: '' },
 ];
