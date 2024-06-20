@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { no_image } from "../../../public/assets/images"
+import { no_sprite } from "../../../public/assets/images"
 import { getIconByTypeName, getPokemonIdFromResultUrl } from "@/lib/utils"
 import { getPokemonArray, getPokemonById, getPokemonByName } from "@/lib/actions/pokemon"
 import { useEffect, useState } from "react";
@@ -35,7 +35,7 @@ const PokemonGrid = (props: { resourceArray: PokeAPI.Utility.NamedAPIResource[],
                             <article key={index} className="bg-white border border-gray-200 rounded-lg shadow-md p-4">
                                 <Link href={`/pokemon/${pokemon.id}`}>
                                     <Image
-                                        src={pokemon.sprites.front_default ?? no_image}
+                                        src={pokemon.sprites.front_default ?? no_sprite}
                                         alt="pokemon image"
                                         width={288}
                                         height={288}
@@ -74,7 +74,7 @@ const PokemonGrid = (props: { resourceArray: PokeAPI.Utility.NamedAPIResource[],
                             <article key={index} className="bg-white border border-gray-200 rounded-lg shadow-md p-4">
                                 <Link href={`/pokemon/${pokemon.id}`}>
                                     <Image
-                                        src={pokemon.sprites.front_default ?? no_image}
+                                        src={pokemon.sprites.front_default ?? no_sprite}
                                         alt="pokemon image"
                                         width={288}
                                         height={288}

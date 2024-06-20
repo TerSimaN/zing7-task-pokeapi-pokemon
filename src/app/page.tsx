@@ -48,7 +48,22 @@ export default async function Home(props: Params) {
   //   }
   // }, []);
 
-  if (typeFilter.length) {
+  if (typeFilter.length && genFilter.length) {
+    typePokemonArray = (await getTypePokemonArray(typeFilter)) as PokeAPI.Types.TypePokemon[];
+    generationPokemonSpeciesArray = (await getGenerationPokemonSpeciesArray(genFilter)) as PokeAPI.Utility.NamedAPIResource[];
+    for (const typePokemon of typePokemonArray) {
+      if (!resourceArray.includes(typePokemon.pokemon)) {
+        resourceArray.push(typePokemon.pokemon);
+      }
+    }
+    for (const pokemonSpecies of generationPokemonSpeciesArray) {
+      if (!resourceArray.includes(pokemonSpecies)) {
+        resourceArray.push(pokemonSpecies);
+      }
+    }
+
+    entries = resourceArray.length;
+  } else if (typeFilter.length) {
     typePokemonArray = (await getTypePokemonArray(typeFilter)) as PokeAPI.Types.TypePokemon[];
     for (const typePokemon of typePokemonArray) {
       if (!resourceArray.includes(typePokemon.pokemon)) {

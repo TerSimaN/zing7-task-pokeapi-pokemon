@@ -12,9 +12,9 @@ const Filter = (props: { searchValue: string, onSearchBarChange: any }) => {
 
     return (
         <section className="sm:p-0 p-4">
-            <div className="flex flex-wrap justify-between items-start">
+            <div className="flex max-lg:flex-col lg:flex-wrap justify-between items-start">
                 <div className="flex sm:items-center sm:justify-normal justify-between sm:w-auto w-full lg:order-2">
-                    <form className="hidden lg:inline-block w-full" action={searchFilter} id="search-form">
+                    <form className="hidden lg:inline-block max-2xl:mt-4 w-full" action={searchFilter} id="search-form">
                         <div className="relative">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg className="text-gray-500 size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -44,8 +44,8 @@ const Filter = (props: { searchValue: string, onSearchBarChange: any }) => {
                         </svg>
                     </button>
                 </div>
-                <div className={`${searchOpen ? `` : `hidden`}`}>
-                    <form className="lg:hidden flex items-center sm:mt-0 mt-4" action={searchFilter}>
+                <div className={`${searchOpen ? `` : `hidden`} lg:mt-0 mt-4`}>
+                    <form className="lg:hidden flex items-center" action={searchFilter}>
                         <div className="relative w-full">
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <svg className="text-gray-500 size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -73,7 +73,7 @@ const Filter = (props: { searchValue: string, onSearchBarChange: any }) => {
                 </div>
                 <div className={`${filterOpen ? `` : `hidden`} lg:block lg:mt-0 mt-4`}>
                     <h3 className="font-inter font-medium text-lg text-gray-900 mb-3">Choose type:</h3>
-                    <ul className="grid sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-4 grid-cols-3 gap-4 font-inter w-full">
+                    <ul className="grid sm:grid-cols-5 grid-cols-3 gap-4 font-inter w-full">
                         {types.map((type, index) => (
                             <li key={index}>
                                 <input type="checkbox" id={`${type.typeName}-type-option`} name="type" value={type.typeName} className="hidden peer" onChange={(e) => handleFilterChange("type", e.target.value)} />
@@ -87,17 +87,14 @@ const Filter = (props: { searchValue: string, onSearchBarChange: any }) => {
                         ))}
                     </ul>
                 </div>
-                <div className={`lg:block lg:mt-0 mt-4`}>
+                <div className={`${filterOpen ? `` : `hidden`} lg:block xl:mt-0 mt-4`}>
                     <h3 className="font-inter font-medium text-lg text-gray-900 mb-3">Choose generation:</h3>
-                    <ul className="grid sm:grid-cols-4 md:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-4 grid-cols-3 gap-4 font-inter w-full">
+                    <ul className="grid sm:max-lg:grid-cols-6 grid-cols-3 gap-4 font-inter w-full">
                         {generations.map((generation, index) => (
                             <li key={index}>
                                 <input type="checkbox" id={`${generation.genName}-gen-option`} name="gen" value={generation.genId} className="hidden peer" onChange={(e) => handleFilterChange("gen", e.target.value)} />
                                 <label className="inline-flex items-center justify-between bg-white border-2 border-gray-200 rounded-lg text-gray-500 p-1 w-full cursor-pointer peer-checked:border-blue-600 hover:text-gray-600 peer-checked:text-gray-600 hover:bg-gray-50" htmlFor={`${generation.genName}-gen-option`}>
-                                    <div className="flex items-center">
-                                        <Image src={generation.genIconSrc} alt={generation.genIconAlt} className="lg:size-8 size-6" />
-                                        <div className="text-sm font-semibold lg:ms-2 w-full capitalize">{generation.genName}</div>
-                                    </div>
+                                    <div className="text-sm font-semibold lg:ms-2 w-full capitalize">{generation.genName}</div>
                                 </label>
                             </li>
                         ))}
