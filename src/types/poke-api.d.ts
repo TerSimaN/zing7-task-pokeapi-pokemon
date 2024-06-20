@@ -43,13 +43,13 @@ namespace PokeAPI {
         type Generation = {
             id: number,
             name: string,
-            abilities: PokeAPI.Utility.NamedAPIResource[],
-            names: PokeAPI.Utility.Name[],
-            main_region: PokeAPI.Utility.NamedAPIResource,
-            moves: PokeAPI.Utility.NamedAPIResource[]
-            pokemon_species: PokeAPI.Utility.NamedAPIResource[],
-            types: PokeAPI.Utility.NamedAPIResource[],
-            version_groups: PokeAPI.Utility.NamedAPIResource[]
+            abilities: Utility.NamedAPIResource[],
+            names: Utility.Name[],
+            main_region: Utility.NamedAPIResource,
+            moves: Utility.NamedAPIResource[]
+            pokemon_species: Utility.NamedAPIResource[],
+            types: Utility.NamedAPIResource[],
+            version_groups: Utility.NamedAPIResource[]
         }
     }
 
