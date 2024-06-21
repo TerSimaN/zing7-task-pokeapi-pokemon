@@ -4,9 +4,9 @@ import Filter from "@/components/layout/Filter";
 import Pagination from "@/components/layout/Pagination";
 import PokemonGrid from "@/components/layout/PokemonGrid";
 import PokemonGridLoading from "@/components/loading/PokemonGridLoading";
-import { getGenerationPokemonSpeciesArray } from "@/lib/actions/generation";
+import { getGenerationPokemonSpeciesMap } from "@/lib/actions/generation";
 import { getPokemonList } from "@/lib/actions/pokemon";
-import { getTypePokemonArray } from "@/lib/actions/pokemonType";
+import { getTypePokemonMap } from "@/lib/actions/pokemonType";
 import { getFiltersFromParams, getOffsetFromParams } from "@/lib/utils";
 import { Suspense, useEffect, useState } from "react";
 
@@ -30,8 +30,6 @@ export default async function Home(props: Params) {
 
   let entries: number = 0;
   let resourceArray: PokeAPI.Utility.NamedAPIResource[] = [];
-  let typePokemonArray: PokeAPI.Types.TypePokemon[] = [];
-  let generationPokemonSpeciesArray: PokeAPI.Utility.NamedAPIResource[] = [];
   let pokemonList: PokeAPI.Utility.NamedAPIResourceList;
 
   // useEffect(() => {
@@ -49,36 +47,36 @@ export default async function Home(props: Params) {
   // }, []);
 
   if (typeFilter.length && genFilter.length) {
-    typePokemonArray = (await getTypePokemonArray(typeFilter)) as PokeAPI.Types.TypePokemon[];
-    generationPokemonSpeciesArray = (await getGenerationPokemonSpeciesArray(genFilter)) as PokeAPI.Utility.NamedAPIResource[];
-    for (const typePokemon of typePokemonArray) {
-      if (!resourceArray.includes(typePokemon.pokemon)) {
-        resourceArray.push(typePokemon.pokemon);
+    const typePokemonMap = (await getTypePokemonMap(typeFilter)) as Map<string, PokeAPI.Utility.NamedAPIResource>;
+    const generationPokemonSpeciesMap = (await getGenerationPokemonSpeciesMap(genFilter)) as Map<string, PokeAPI.Utility.NamedAPIResource>;
+    typePokemonMap.forEach((value, key) => {
+      if (generationPokemonSpeciesMap.has(key)) {
+        let genPokemonSpecies = generationPokemonSpeciesMap.get(key);
+        if (genPokemonSpecies != null) {
+          resourceArray.push(genPokemonSpecies);
+        }
       }
-    }
-    for (const pokemonSpecies of generationPokemonSpeciesArray) {
-      if (!resourceArray.includes(pokemonSpecies)) {
-        resourceArray.push(pokemonSpecies);
-      }
-    }
-
+    });
+    
     entries = resourceArray.length;
   } else if (typeFilter.length) {
-    typePokemonArray = (await getTypePokemonArray(typeFilter)) as PokeAPI.Types.TypePokemon[];
-    for (const typePokemon of typePokemonArray) {
-      if (!resourceArray.includes(typePokemon.pokemon)) {
-        resourceArray.push(typePokemon.pokemon);
+    const typePokemonMap = (await getTypePokemonMap(typeFilter)) as Map<string, PokeAPI.Utility.NamedAPIResource>;
+    typePokemonMap.forEach((value, key) => {
+      let pokemon = typePokemonMap.get(key);
+      if (pokemon != null) {
+        resourceArray.push(pokemon);
       }
-    }
+    });
 
     entries = resourceArray.length;
   } else if (genFilter.length) {
-    generationPokemonSpeciesArray = (await getGenerationPokemonSpeciesArray(genFilter)) as PokeAPI.Utility.NamedAPIResource[];
-    for (const pokemonSpecies of generationPokemonSpeciesArray) {
-      if (!resourceArray.includes(pokemonSpecies)) {
-        resourceArray.push(pokemonSpecies);
+    const generationPokemonSpeciesMap = (await getGenerationPokemonSpeciesMap(genFilter)) as Map<string, PokeAPI.Utility.NamedAPIResource>;
+    generationPokemonSpeciesMap.forEach((value, key) => {
+      let pokemon = generationPokemonSpeciesMap.get(key);
+      if (pokemon != null) {
+        resourceArray.push(pokemon);
       }
-    }
+    });
 
     entries = resourceArray.length;
   } else {

@@ -29,20 +29,28 @@ export async function getTypeArray(typeList: PokeAPI.Utility.NamedAPIResourceLis
     return typeArray;
 }
 
-export async function getTypePokemonArray(filter: string | string[]) {
-    let typePokemonArray: PokeAPI.Types.TypePokemon[] = [];
+export async function getTypePokemonMap(filter: string | string[]) {
+    const pokemonMap = new Map<string, PokeAPI.Utility.NamedAPIResource>();
 
     if (Array.isArray(filter)) {
         console.log("Filter as array:", filter);
         for (const filterObj of filter) {
             let type = (await getTypeByName(filterObj)) as PokeAPI.Types.Type;
-            typePokemonArray = typePokemonArray.concat(type.pokemon);
+            type.pokemon.forEach((typePokemon) => {
+                if (!pokemonMap.has(typePokemon.pokemon.name)) {
+                    pokemonMap.set(typePokemon.pokemon.name, typePokemon.pokemon);
+                }
+            });
         }
     } else if (filter !== '') {
         console.log("Filter as string:", filter);
         let type = (await getTypeByName(filter)) as PokeAPI.Types.Type;
-        typePokemonArray = typePokemonArray.concat(type.pokemon);
+        type.pokemon.forEach((typePokemon) => {
+            if (!pokemonMap.has(typePokemon.pokemon.name)) {
+                pokemonMap.set(typePokemon.pokemon.name, typePokemon.pokemon);
+            }
+        });
     }
 
-    return typePokemonArray;
+    return pokemonMap;
 }

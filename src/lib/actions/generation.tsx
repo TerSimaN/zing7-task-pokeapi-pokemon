@@ -18,20 +18,28 @@ export async function getGenerationById(id: string) {
     return data;
 }
 
-export async function getGenerationPokemonSpeciesArray(filter: string | string[]) {
-    let generationPokemonSpeciesArray: PokeAPI.Utility.NamedAPIResource[] = [];
+export async function getGenerationPokemonSpeciesMap(filter: string | string[]) {
+    const pokemonMap = new Map<string, PokeAPI.Utility.NamedAPIResource>();
 
     if (Array.isArray(filter)) {
         console.log("Filter as array:", filter);
         for (const filterObj of filter) {
-            let generation = (await getGenerationByName(filterObj)) as PokeAPI.Game.Generation;
-            generationPokemonSpeciesArray = generationPokemonSpeciesArray.concat(generation.pokemon_species);
+            let generation = (await getGenerationById(filterObj)) as PokeAPI.Game.Generation;
+            generation.pokemon_species.forEach((pokemonSpecies) => {
+                if (!pokemonMap.has(pokemonSpecies.name)) {
+                    pokemonMap.set(pokemonSpecies.name, pokemonSpecies);
+                }
+            });
         }
     } else if (filter !== '') {
         console.log("Filter as string:", filter);
-        let generation = (await getGenerationByName(filter)) as PokeAPI.Game.Generation;
-        generationPokemonSpeciesArray = generationPokemonSpeciesArray.concat(generation.pokemon_species);
+        let generation = (await getGenerationById(filter)) as PokeAPI.Game.Generation;
+        generation.pokemon_species.forEach((pokemonSpecies) => {
+            if (!pokemonMap.has(pokemonSpecies.name)) {
+                pokemonMap.set(pokemonSpecies.name, pokemonSpecies);
+            }
+        });
     }
 
-    return generationPokemonSpeciesArray;
+    return pokemonMap;
 }
