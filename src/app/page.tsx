@@ -18,11 +18,27 @@ type Params = {
 }
 
 export default async function Home(props: Params) {
-  // const [pokemonList, setPokemonList] = useState({} as PokeAPI.Utility.NamedAPIResourceList);
-  // const [typePokemonArray, setTypePokemonArray] = useState([] as PokeAPI.Types.TypePokemon[]);
-  // const [resourceArray, setResourceArray] = useState([] as PokeAPI.Utility.NamedAPIResource[]);
-  // const [entries, setEntries] = useState(0);
-  // const [searchValue, setSearchValue] = useState("");
+  /* Used in client component
+  const [pokemonList, setPokemonList] = useState({} as PokeAPI.Utility.NamedAPIResourceList);
+  const [typePokemonArray, setTypePokemonArray] = useState([] as PokeAPI.Types.TypePokemon[]);
+  const [resourceArray, setResourceArray] = useState([] as PokeAPI.Utility.NamedAPIResource[]);
+  const [entries, setEntries] = useState(0);
+  const [searchValue, setSearchValue] = useState("");
+
+  useEffect(() => {
+    if (filter) {
+      getTypePokemonArray(filter).then((data) => {
+        setTypePokemonArray([...typePokemonArray, ...data]);
+      });
+    } else {
+      getPokemonList(offset).then((data) => {
+        setPokemonList(data);
+        setResourceArray([...resourceArray, ...data.results]);
+        setEntries(data.count);
+      });
+    }
+  }, []);
+   */
 
   let offset: number = getOffsetFromParams(props.searchParams.page);
   let typeFilter: string | string[] = getFiltersFromParams(props.searchParams["type"]);
@@ -31,20 +47,6 @@ export default async function Home(props: Params) {
   let entries: number = 0;
   let resourceArray: PokeAPI.Utility.NamedAPIResource[] = [];
   let pokemonList: PokeAPI.Utility.NamedAPIResourceList;
-
-  // useEffect(() => {
-  //   if (filter) {
-  //     getTypePokemonArray(filter).then((data) => {
-  //       setTypePokemonArray([...typePokemonArray, ...data]);
-  //     });
-  //   } else {
-  //     getPokemonList(offset).then((data) => {
-  //       setPokemonList(data);
-  //       setResourceArray([...resourceArray, ...data.results]);
-  //       setEntries(data.count);
-  //     });
-  //   }
-  // }, []);
 
   if (typeFilter.length && genFilter.length) {
     const typePokemonMap = (await getTypePokemonMap(typeFilter)) as Map<string, PokeAPI.Utility.NamedAPIResource>;
