@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { no_image } from "../../../../public/assets/images"
+import { no_sprite } from "../../../../public/assets/images"
 
 const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
     return (
@@ -25,7 +25,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.front_default ?? no_image}
+                                src={props.data.sprites.front_default ?? no_sprite}
                                 alt="front_default"
                                 width={96}
                                 height={96}
@@ -34,7 +34,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                         </td>
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.front_shiny ?? no_image}
+                                src={props.data.sprites.front_shiny ?? no_sprite}
                                 alt="front_shiny"
                                 width={96}
                                 height={96}
@@ -43,7 +43,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                         </td>
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.front_female ?? no_image}
+                                src={props.data.sprites.front_female ?? no_sprite}
                                 alt="front_female"
                                 width={96}
                                 height={96}
@@ -52,7 +52,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                         </td>
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.front_shiny_female ?? no_image}
+                                src={props.data.sprites.front_shiny_female ?? no_sprite}
                                 alt="front_shiny_female"
                                 width={96}
                                 height={96}
@@ -63,7 +63,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.back_default ?? no_image}
+                                src={props.data.sprites.back_default ?? no_sprite}
                                 alt="back_default"
                                 width={96}
                                 height={96}
@@ -72,7 +72,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                         </td>
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.back_shiny ?? no_image}
+                                src={props.data.sprites.back_shiny ?? no_sprite}
                                 alt="back_shiny"
                                 width={96}
                                 height={96}
@@ -81,7 +81,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                         </td>
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.back_female ?? no_image}
+                                src={props.data.sprites.back_female ?? no_sprite}
                                 alt="back_female"
                                 width={96}
                                 height={96}
@@ -90,7 +90,7 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                         </td>
                         <td className="p-6">
                             <Image
-                                src={props.data.sprites.back_shiny_female ?? no_image}
+                                src={props.data.sprites.back_shiny_female ?? no_sprite}
                                 alt="back_shiny_female"
                                 width={96}
                                 height={96}

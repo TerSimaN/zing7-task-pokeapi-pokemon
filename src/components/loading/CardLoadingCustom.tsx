@@ -1,19 +1,19 @@
 import Image from "next/image"
-import { no_image } from "../../../public/assets/images"
-import { no_image_type } from "../../../public/assets/types"
+import { no_sprite } from "../../../public/assets/images"
+import { placeholder_type } from "../../../public/assets/types"
 
 const CardLoadingCustom = () => {
     return (
         <article className="bg-white border border-gray-200 rounded-lg shadow-md p-4">
             <Image
-                src={no_image}
-                alt="no image"
+                src={no_sprite}
+                alt="no sprite"
                 className="rounded-lg mb-5"
             />
             <h2 className="font-inter font-bold text-2xl tracking-tight text-gray-900 capitalize mb-2">Pokemon name</h2>
             <div className="flex items-center gap-2 mb-5">
                 <span className="inline-flex items-center bg-gray-100 rounded font-inter font-medium sm:text-sm text-base text-gray-500 pl-1.5 pr-2 py-1 capitalize select-none hover:bg-gray-200 hover:text-gray-600">
-                    <Image src={no_image_type} alt="no image type" className="sm:size-7 size-9 me-1" />
+                    <Image src={placeholder_type} alt="placeholder type" className="sm:size-7 size-9 me-1" />
                     Type
                 </span>
             </div>
