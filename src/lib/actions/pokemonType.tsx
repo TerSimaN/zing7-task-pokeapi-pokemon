@@ -18,7 +18,7 @@ export async function getTypeById(id: string) {
     return data;
 }
 
-export async function getTypeArray(typeList: PokeAPI.Utility.NamedAPIResourceList) {
+export function getTypeArray(typeList: PokeAPI.Utility.NamedAPIResourceList) {
     let typeArray: PokeAPI.Types.Type[] = [];
 
     typeList.results.forEach(async (result) => {

@@ -18,7 +18,7 @@ export async function getPokemonById(id: string) {
     return data;
 }
 
-export async function getPokemonArray(resourceArray: PokeAPI.Utility.NamedAPIResource[]) {
+export function getPokemonArray(resourceArray: PokeAPI.Utility.NamedAPIResource[]) {
     let pokeArray: PokeAPI.Pokemon.Pokemon[] = [];
 
     resourceArray.forEach(async (resource) => {
@@ -29,7 +29,7 @@ export async function getPokemonArray(resourceArray: PokeAPI.Utility.NamedAPIRes
     return pokeArray;
 }
 
-export async function searchFilter(formData: FormData) {
+export function searchFilter(formData: FormData) {
     const query = formData.get("search-bar");
     alert(`You searched for '${query}'`);
 }
