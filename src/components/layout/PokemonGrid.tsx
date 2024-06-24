@@ -40,10 +40,12 @@ const PokemonGrid = (props: { resourceArray: PokeAPI.Utility.NamedAPIResource[],
                                     {pokemon.types.map((type, index) => {
                                         const typeIcon = getIconByTypeName(type.type.name);
                                         return (
-                                            <span key={index} className="inline-flex items-center bg-gray-100 rounded font-inter font-medium sm:text-sm text-base text-gray-500 pl-1.5 pr-2 py-1 capitalize select-none hover:bg-gray-200 hover:text-gray-600">
+                                            <Link href={`/pokemon/type/${type.type.name}`} key={index}
+                                                className="inline-flex items-center bg-gray-100 rounded font-inter font-medium sm:text-sm text-base text-gray-500 pl-1.5 pr-2 py-1 capitalize select-none hover:bg-gray-200 hover:text-gray-600"
+                                            >
                                                 <Image src={typeIcon.typeIconSrc} alt={typeIcon.typeIconAlt} className="sm:size-7 size-9 me-1" />
                                                 {type.type.name}
-                                            </span>
+                                            </Link>
                                         )
                                     })}
                                 </div>

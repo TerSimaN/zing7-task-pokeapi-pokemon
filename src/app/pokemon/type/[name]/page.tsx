@@ -1,9 +1,12 @@
+import { getTypeByName } from "@/lib/actions/pokemonType";
 import GameIndices from "@/components/layout/Tables/GameIndices";
 import DamageRelations from "@/components/layout/Tables/Type/DamageRelations";
 import Generation from "@/components/layout/Tables/Generation";
-import TypesTable from "@/components/layout/Tables/TypesTable";
-import { getTypeByName } from "@/lib/actions/pokemonType";
 import MoveDamage from "@/components/layout/Tables/MoveDamage";
+import Moves from "@/components/layout/Tables/Moves";
+import Names from "@/components/layout/Tables/Names";
+import PastDamageRelations from "@/components/layout/Tables/Type/PastDamageRelations";
+import Pokemon from "@/components/layout/Tables/Pokemon";
 
 type Params = {
     params: { name: string },
@@ -24,7 +27,10 @@ export default async function TypeDetails(props: Params) {
                     <GameIndices data={typeData.game_indices} dataType="generation" />
                     <Generation data={typeData.generation} />
                     <MoveDamage data={typeData.move_damage_class} />
-                    <TypesTable data={typeData} />
+                    <Moves data={typeData.moves} />
+                    <Names data={typeData.names} />
+                    <PastDamageRelations data={typeData.past_damage_relations} />
+                    <Pokemon data={typeData.pokemon} />
                 </div>
             </div>
         </main>
