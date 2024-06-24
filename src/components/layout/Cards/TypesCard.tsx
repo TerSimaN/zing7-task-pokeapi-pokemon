@@ -1,5 +1,6 @@
 import { getIconByTypeName } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 const TypesCard = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
     return (
@@ -12,7 +13,7 @@ const TypesCard = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                         <dl key={index} className="flex items-center justify-between gap-4 py-2">
                             <dt className="inline-flex items-center gap-x-2 font-inter font-medium text-sm text-gray-900 capitalize">
                                 <Image src={typeIcon.typeIconSrc} alt={typeIcon.typeIconAlt} className="lg:size-8 size-6" />
-                                {type.type.name}
+                                <Link href={`/pokemon/type/${type.type.name}`}>{type.type.name}</Link>
                             </dt>
                             <dd className="font-inter font-normal text-sm text-gray-500">Slot {type.slot}</dd>
                         </dl>
