@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import PastTypesTableRow from "./PastTypesTableRow";
 import AccordionHeader from "@/components/ui/AccordionHeader";
+import Link from "next/link";
+import { useState } from "react";
 
-const PastTypesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
+const Generation = (props: { data: PokeAPI.Utility.NamedAPIResource }) => {
     const [open, setOpen] = useState(false);
 
     return (
-        <div>
+        <>
             <button className="w-full" type="button" onClick={() => setOpen(!open)}>
-                <AccordionHeader text="Past types" isOpen={open} className="border-b" />
+                <AccordionHeader text="Generation" isOpen={open} />
             </button>
             <div className={`${open ? `` : `hidden`}`}>
                 <div className="overflow-x-auto shadow-md border-x sm:rounded-b-lg">
@@ -23,21 +23,25 @@ const PastTypesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                                 <th scope="col" className="px-6 py-3">
                                     Generation url
                                 </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Past types
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {props.data.past_types.map((pastType, index) => (
-                                <PastTypesTableRow key={index} pastType={pastType} />
-                            ))}
+                            <tr className="odd:bg-white even:bg-gray-50 border-b">
+                                <th scope="row" className="font-medium text-gray-900 px-6 py-4 capitalize">
+                                    {props.data.name}
+                                </th>
+                                <td className="px-6 py-4">
+                                    <Link href={props.data.url} className="font-medium text-blue-600 hover:underline">
+                                        {props.data.url}
+                                    </Link>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
-export default PastTypesTable
+export default Generation

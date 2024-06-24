@@ -1,16 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import HeldItemsTableRow from "./HeldItemsTableRow";
-import AccordionHeader from "@/components/ui/AccordionHeader";
+import { useState } from "react"
+import AccordionHeader from "@/components/ui/AccordionHeader"
 
-const HeldItemsTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
+const TypesTable = (props: { data: PokeAPI.Types.Type }) => {
     const [open, setOpen] = useState(false);
 
     return (
         <div>
             <button className="w-full" type="button" onClick={() => setOpen(!open)}>
-                <AccordionHeader text="Held items" isOpen={open} />
+                <AccordionHeader text="Types" isOpen={open} />
             </button>
             <div className={`${open ? `` : `hidden`}`}>
                 <div className="overflow-x-auto shadow-md border-x sm:rounded-b-lg">
@@ -18,21 +17,26 @@ const HeldItemsTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                         <thead className="bg-gray-50 text-xs text-gray-700 uppercase">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
-                                    Held item name
+                                    Generation
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Held item url
+                                    Move damage class
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Version details
+                                    Moves
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Names
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Past damage relations
+                                </th>
+                                <th scope="col" className="px-6 py-3">
+                                    Pokemon
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {props.data.held_items.map((heldItem, index) => (
-                                <HeldItemsTableRow key={index} heldItem={heldItem} />
-                            ))}
-                        </tbody>
+                        <tbody></tbody>
                     </table>
                 </div>
             </div>
@@ -40,4 +44,4 @@ const HeldItemsTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
     )
 }
 
-export default HeldItemsTable
+export default TypesTable

@@ -1,7 +1,7 @@
 import Image from "next/image"
-import { no_sprite } from "../../../../public/assets/images"
+import { no_sprite } from "../../../../../public/assets/images"
 
-const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
+const PokemonSprites = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
     return (
         <div className="overflow-x-auto shadow-md sm:rounded-lg mt-6">
             <table className="font-inter text-sm text-left text-gray-500 whitespace-nowrap w-full">
@@ -104,4 +104,4 @@ const SpritesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
     )
 }
 
-export default SpritesTable
+export default PokemonSprites

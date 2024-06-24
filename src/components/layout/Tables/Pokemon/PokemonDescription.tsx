@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-const MainDescriptionTable = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
+const PokemonDescription = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
     return (
         <div className="overflow-x-auto shadow-md sm:rounded-lg mt-4">
             <table className="font-inter text-sm text-left text-gray-500 whitespace-nowrap w-full">
@@ -75,4 +75,4 @@ const MainDescriptionTable = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
     )
 }
 
-export default MainDescriptionTable
+export default PokemonDescription

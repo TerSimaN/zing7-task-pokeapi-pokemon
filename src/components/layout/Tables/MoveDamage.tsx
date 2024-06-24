@@ -1,16 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import MoveTableRow from "./MoveTableRow";
 import AccordionHeader from "@/components/ui/AccordionHeader";
+import Link from "next/link";
+import { useState } from "react";
 
-const MovesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
+const MoveDamage = (props: { data: PokeAPI.Utility.NamedAPIResource }) => {
     const [open, setOpen] = useState(false);
 
     return (
-        <div>
+        <>
             <button className="w-full" type="button" onClick={() => setOpen(!open)}>
-                <AccordionHeader text="Moves" isOpen={open} />
+                <AccordionHeader text="Move damage class" isOpen={open} />
             </button>
             <div className={`${open ? `` : `hidden`}`}>
                 <div className="overflow-x-auto shadow-md border-x sm:rounded-b-lg">
@@ -18,26 +18,30 @@ const MovesTable = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                         <thead className="bg-gray-50 text-xs text-gray-700 uppercase">
                             <tr>
                                 <th scope="col" className="px-6 py-3">
-                                    Move name
+                                    Move damage class name
                                 </th>
                                 <th scope="col" className="px-6 py-3">
-                                    Move url
-                                </th>
-                                <th scope="col" className="px-6 py-3">
-                                    Version group details
+                                    Move damage class url
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {props.data.moves.map((move, index) => (
-                                <MoveTableRow key={index} move={move} />
-                            ))}
+                            <tr className="odd:bg-white even:bg-gray-50 border-b">
+                                <th scope="row" className="font-medium text-gray-900 px-6 py-4 capitalize">
+                                    {props.data.name}
+                                </th>
+                                <td className="px-6 py-4">
+                                    <Link href={props.data.url} className="font-medium text-blue-600 hover:underline">
+                                        {props.data.url}
+                                    </Link>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 
-export default MovesTable
+export default MoveDamage
