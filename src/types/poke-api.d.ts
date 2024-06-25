@@ -23,9 +23,20 @@ namespace PokeAPI {
             url: string
         }
 
+        type Description = {
+            description: string,
+            language: NamedAPIResource
+        }
+
         type GenerationGameIndex = {
             game_index: number,
             generation: NamedAPIResource
+        }
+
+        type FlavorText = {
+            flavor_text: string,
+            language: NamedAPIResource,
+            version: NamedAPIResource
         }
 
         type Name = {
@@ -133,6 +144,59 @@ namespace PokeAPI {
         type PokemonCries = {
             latest: string,
             legacy: string
+        }
+    }
+
+    namespace PokemonSpecies {
+        type PokemonSpecies = {
+            id: number,
+            name: string,
+            order: number,
+            gender_rate: number,
+            capture_rate: number,
+            base_happiness: number,
+            is_baby: boolean,
+            is_legendary: boolean,
+            is_mythical: boolean,
+            hatch_counter: number,
+            has_gender_differences: boolean,
+            forms_switchable: boolean,
+            growth_rate: Utility.NamedAPIResource,
+            pokedex_numbers: PokemonSpeciesDexEntry[],
+            egg_groups: Utility.NamedAPIResource[],
+            color: Utility.NamedAPIResource,
+            shape: Utility.NamedAPIResource,
+            evolves_from_species: Utility.NamedAPIResource,
+            evolution_chain: Utility.APIResource,
+            habitat: Utility.NamedAPIResource,
+            generation: Utility.NamedAPIResource,
+            names: Utility.Name[],
+            pal_park_encounters: PalParkEncounterArea[],
+            flavor_text_entries: Utility.FlavorText[],
+            form_descriptions: Utility.Description[],
+            genra: Genus[],
+            varieties: PokemonSpeciesVariety[]
+        }
+
+        type Genus = {
+            genus: string,
+            language: Utility.NamedAPIResource
+        }
+
+        type PokemonSpeciesDexEntry = {
+            entry_number: number,
+            pokedex: Utility.NamedAPIResource
+        }
+
+        type PalParkEncounterArea = {
+            base_score: number,
+            rate: number,
+            area: Utility.NamedAPIResource
+        }
+
+        type PokemonSpeciesVariety = {
+            is_default: boolean,
+            pokemon: Utility.NamedAPIResource
         }
     }
 
