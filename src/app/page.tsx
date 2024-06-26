@@ -8,7 +8,7 @@ import { getGenPokemonMap, getGenPokemonSpeciesMap } from "@/lib/actions/generat
 import { getPokemonList } from "@/lib/actions/pokemon";
 import { getTypePokemonMap } from "@/lib/actions/pokemonType";
 import { getFiltersFromParams, getOffsetFromParams } from "@/lib/utils";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 
 type Params = {
   searchParams: {
@@ -18,90 +18,6 @@ type Params = {
 }
 
 export default async function Home(props: Params) {
-  // Used in client component
-  /* const [resourceArray, setResourceArray] = useState<PokeAPI.Utility.NamedAPIResource[]>([]);
-  const [typePokemonMap, setTypePokemonMap] = useState<Map<string, PokeAPI.Utility.NamedAPIResource>>();
-  const [genPokemonMap, setGenPokemonMap] = useState<Map<string, PokeAPI.Utility.NamedAPIResource>>();
-
-  const [typeFilter, setTypeFilter] = useState<string | string[] | undefined>(props.searchParams["type"]);
-  const [genFilter, setGenFilter] = useState<string | string[] | undefined>(props.searchParams["gen"]);
-  const [entries, setEntries] = useState(0);
-  const [offset, setOffset] = useState(0);
-
-  const [searchValue, setSearchValue] = useState("");
-
-  if (props.searchParams.page) {
-    let nextOffset = getOffsetFromParams(props.searchParams.page);
-    setOffset(nextOffset);
-  }
-
-  if (typeof props.searchParams["type"] !== "undefined") {
-    let nextTypeFilter = getFiltersFromParams(props.searchParams["type"]);
-    setTypeFilter(nextTypeFilter);
-  }
-
-  if (typeof props.searchParams["gen"] !== "undefined") {
-    let nextGenFilter = getFiltersFromParams(props.searchParams["gen"]);
-    setGenFilter(nextGenFilter);
-  }
-
-  useEffect(() => {
-    const nextResourceArray = resourceArray.slice();
-    if ((typeof typeFilter !== "undefined") && (typeof genFilter !== "undefined")) {
-      if (typeFilter.length && genFilter.length) {
-        getTypePokemonMap(typeFilter).then((data) => {
-          setTypePokemonMap(data);
-        });
-        getGenPokemonMap(genFilter).then((data) => {
-          setGenPokemonMap(data);
-        });
-        typePokemonMap?.forEach((value, key) => {
-          if (genPokemonMap?.has(key)) {
-            let genPokemon = genPokemonMap.get(key);
-            if (genPokemon != null) {
-              nextResourceArray.push(genPokemon);
-            }
-          }
-        });
-        setResourceArray([...resourceArray, ...nextResourceArray]);
-        setEntries(resourceArray.length);
-      }
-    } else if (typeof typeFilter !== "undefined") {
-      if (typeFilter.length) {
-        getTypePokemonMap(typeFilter).then((data) => {
-          setTypePokemonMap(data);
-        });
-        typePokemonMap?.forEach((value, key) => {
-          let pokemon = typePokemonMap.get(key);
-          if (pokemon != null) {
-            nextResourceArray.push(pokemon);
-          }
-        });
-        setResourceArray([...resourceArray, ...nextResourceArray]);
-        setEntries(resourceArray.length);
-      }
-    } else if (typeof genFilter !== "undefined") {
-      if (genFilter.length) {
-        getGenPokemonMap(genFilter).then((data) => {
-          setGenPokemonMap(data);
-        });
-        genPokemonMap?.forEach((value, key) => {
-          let pokemon = genPokemonMap.get(key);
-          if (pokemon != null) {
-            nextResourceArray.push(pokemon);
-          }
-        });
-        setResourceArray([...resourceArray, ...nextResourceArray]);
-        setEntries(resourceArray.length);
-      }
-    } else {
-      getPokemonList(offset).then((data) => {
-        setResourceArray([...resourceArray, ...data.results]);
-        setEntries(data.count);
-      });
-    }
-  }, []); */
-
   let offset: number = getOffsetFromParams(props.searchParams.page);
   let typeFilter: string | string[] = getFiltersFromParams(props.searchParams["type"]);
   let genFilter: string | string[] = getFiltersFromParams(props.searchParams["gen"]);
@@ -161,16 +77,8 @@ export default async function Home(props: Params) {
 }
 
 /** TODO:
- * DO NOT Try to make Home page.tsx a client component (UNLESS Really needed),
- *  because it breaks fetch requests
- * 
  * Finish filtering of pokemon by type filter and searching w/ autocomplete
  * Finish filtering of pokemon by pokemon generation and type filter
- * 
- * Use https://flowbite.com/docs/components/skeleton/ as:
- *  LoadingSkeleton.tsx
- *  a loading page when waiting for data
- *  fetched from filtering by type or w/ search to load
  * 
  * Change pagination bar to not scroll, but show
  *  '[1][2][3][...][25][26][27]' page numbers instead
