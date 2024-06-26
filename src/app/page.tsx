@@ -1,10 +1,8 @@
-// "use client";
-
 import Filter from "@/components/layout/Filter";
 import Pagination from "@/components/layout/Pagination";
 import PokemonGrid from "@/components/layout/PokemonGrid";
 import PokemonGridLoading from "@/components/loading/PokemonGridLoading";
-import { getGenPokemonMap, getGenPokemonSpeciesMap } from "@/lib/actions/generation";
+import { getGenPokemonMap } from "@/lib/actions/generation";
 import { getPokemonList } from "@/lib/actions/pokemon";
 import { getTypePokemonMap } from "@/lib/actions/pokemonType";
 import { getFiltersFromParams, getOffsetFromParams } from "@/lib/utils";
