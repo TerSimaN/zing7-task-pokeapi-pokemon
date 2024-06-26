@@ -19,42 +19,55 @@ type Params = {
 
 export default async function Home(props: Params) {
   // Used in client component
-  /* const [pokemonList, setPokemonList] = useState<PokeAPI.Utility.NamedAPIResourceList>();
-  const [resourceArray, setResourceArray] = useState<PokeAPI.Utility.NamedAPIResource[]>([]);
+  /* const [resourceArray, setResourceArray] = useState<PokeAPI.Utility.NamedAPIResource[]>([]);
   const [typePokemonMap, setTypePokemonMap] = useState<Map<string, PokeAPI.Utility.NamedAPIResource>>();
-  const [generationPokemonSpeciesMap, setGenerationPokemonSpeciesMap] = useState<Map<string, PokeAPI.Utility.NamedAPIResource>>();
+  const [genPokemonMap, setGenPokemonMap] = useState<Map<string, PokeAPI.Utility.NamedAPIResource>>();
 
-  const [typeFilter, setTypeFilter] = useState<string | string[]>();
-  const [genFilter, setGenFilter] = useState<string | string[]>();
+  const [typeFilter, setTypeFilter] = useState<string | string[] | undefined>(props.searchParams["type"]);
+  const [genFilter, setGenFilter] = useState<string | string[] | undefined>(props.searchParams["gen"]);
   const [entries, setEntries] = useState(0);
   const [offset, setOffset] = useState(0);
 
   const [searchValue, setSearchValue] = useState("");
 
+  if (props.searchParams.page) {
+    let nextOffset = getOffsetFromParams(props.searchParams.page);
+    setOffset(nextOffset);
+  }
+
+  if (typeof props.searchParams["type"] !== "undefined") {
+    let nextTypeFilter = getFiltersFromParams(props.searchParams["type"]);
+    setTypeFilter(nextTypeFilter);
+  }
+
+  if (typeof props.searchParams["gen"] !== "undefined") {
+    let nextGenFilter = getFiltersFromParams(props.searchParams["gen"]);
+    setGenFilter(nextGenFilter);
+  }
+
   useEffect(() => {
-    setTypeFilter(getFiltersFromParams(props.searchParams["type"]));
-    setGenFilter(getFiltersFromParams(props.searchParams["gen"]));
-    setOffset(getOffsetFromParams(props.searchParams.page));
-    if ((typeFilter != null) && (genFilter != null)) {
-      const nextResourceArray = resourceArray.slice();
+    const nextResourceArray = resourceArray.slice();
+    if ((typeof typeFilter !== "undefined") && (typeof genFilter !== "undefined")) {
       if (typeFilter.length && genFilter.length) {
         getTypePokemonMap(typeFilter).then((data) => {
           setTypePokemonMap(data);
         });
-        getGenerationPokemonSpeciesMap(genFilter).then((data) => {
-          setGenerationPokemonSpeciesMap(data);
+        getGenPokemonMap(genFilter).then((data) => {
+          setGenPokemonMap(data);
         });
         typePokemonMap?.forEach((value, key) => {
-          if (generationPokemonSpeciesMap?.has(key)) {
-            let genPokemonSpecies = generationPokemonSpeciesMap.get(key);
-            if (genPokemonSpecies != null) {
-              nextResourceArray.push(genPokemonSpecies);
+          if (genPokemonMap?.has(key)) {
+            let genPokemon = genPokemonMap.get(key);
+            if (genPokemon != null) {
+              nextResourceArray.push(genPokemon);
             }
           }
         });
         setResourceArray([...resourceArray, ...nextResourceArray]);
         setEntries(resourceArray.length);
-      } else if (typeFilter.length) {
+      }
+    } else if (typeof typeFilter !== "undefined") {
+      if (typeFilter.length) {
         getTypePokemonMap(typeFilter).then((data) => {
           setTypePokemonMap(data);
         });
@@ -66,12 +79,14 @@ export default async function Home(props: Params) {
         });
         setResourceArray([...resourceArray, ...nextResourceArray]);
         setEntries(resourceArray.length);
-      } else if (genFilter.length) {
-        getGenerationPokemonSpeciesMap(genFilter).then((data) => {
-          setGenerationPokemonSpeciesMap(data);
+      }
+    } else if (typeof genFilter !== "undefined") {
+      if (genFilter.length) {
+        getGenPokemonMap(genFilter).then((data) => {
+          setGenPokemonMap(data);
         });
-        generationPokemonSpeciesMap?.forEach((value, key) => {
-          let pokemon = generationPokemonSpeciesMap.get(key);
+        genPokemonMap?.forEach((value, key) => {
+          let pokemon = genPokemonMap.get(key);
           if (pokemon != null) {
             nextResourceArray.push(pokemon);
           }
