@@ -5,7 +5,7 @@ import { getPokemonIdFromResultUrl } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
 
-const Pokemon = (props: { data: PokeAPI.Types.TypePokemon[] }) => {
+const Pokemon = ({ pokemon }: { pokemon: PokeAPI.Types.TypePokemon[] }) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -30,7 +30,7 @@ const Pokemon = (props: { data: PokeAPI.Types.TypePokemon[] }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.data.map((pokemon, index) => {
+                            {pokemon.map((pokemon, index) => {
                                 let pokemonId: string = getPokemonIdFromResultUrl(pokemon.pokemon.url);
 
                                 return (

@@ -4,7 +4,7 @@ import AccordionHeader from "@/components/ui/AccordionHeader";
 import Link from "next/link";
 import { useState } from "react";
 
-const PokemonForms = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
+const PokemonForms = ({ pokemon }: { pokemon: PokeAPI.Pokemon.Pokemon }) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -26,7 +26,7 @@ const PokemonForms = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.data.forms.map((form, index) => (
+                            {pokemon.forms.map((form, index) => (
                                 <tr key={index} className="odd:bg-white even:bg-gray-50 border-b">
                                     <th scope="row" className="font-medium text-gray-900 px-6 py-4 capitalize">
                                         {form.name}

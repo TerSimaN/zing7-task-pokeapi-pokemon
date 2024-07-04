@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-const PokemonDescription = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
+const PokemonDescription = ({ pokemon }: { pokemon: PokeAPI.Pokemon.Pokemon }) => {
     return (
         <div className="overflow-x-auto shadow-md sm:rounded-lg mt-4">
             <table className="font-inter text-sm text-left text-gray-500 whitespace-nowrap w-full">
@@ -16,7 +16,7 @@ const PokemonDescription = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                             Name
                         </th>
                         <td className="px-6 py-4 capitalize">
-                            {props.data.name}
+                            {pokemon.name}
                         </td>
                     </tr>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
@@ -24,7 +24,7 @@ const PokemonDescription = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                             Base experience
                         </th>
                         <td className="px-6 py-4">
-                            {props.data.base_experience}
+                            {pokemon.base_experience}
                         </td>
                     </tr>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
@@ -32,8 +32,8 @@ const PokemonDescription = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                             Location area encounters
                         </th>
                         <td className="px-6 py-4">
-                            <Link href={props.data.location_area_encounters} className="font-medium text-blue-600 hover:underline">
-                                {props.data.location_area_encounters}
+                            <Link href={pokemon.location_area_encounters} className="font-medium text-blue-600 hover:underline">
+                                {pokemon.location_area_encounters}
                             </Link>
                         </td>
                     </tr>
@@ -42,7 +42,7 @@ const PokemonDescription = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                             Height
                         </th>
                         <td className="px-6 py-4">
-                            {props.data.height}
+                            {pokemon.height}
                         </td>
                     </tr>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
@@ -50,7 +50,7 @@ const PokemonDescription = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                             Weight
                         </th>
                         <td className="px-6 py-4">
-                            {props.data.weight}
+                            {pokemon.weight}
                         </td>
                     </tr>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
@@ -58,7 +58,7 @@ const PokemonDescription = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                             Is default
                         </th>
                         <td className="px-6 py-4 capitalize">
-                            {`${props.data.is_default ? 'yes' : 'no'}`}
+                            {`${pokemon.is_default ? 'yes' : 'no'}`}
                         </td>
                     </tr>
                     <tr className="odd:bg-white even:bg-gray-50 border-b">
@@ -66,7 +66,7 @@ const PokemonDescription = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
                             Order
                         </th>
                         <td className="px-6 py-4">
-                            {props.data.order}
+                            {pokemon.order}
                         </td>
                     </tr>
                 </tbody>

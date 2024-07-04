@@ -1,6 +1,6 @@
 import DownloadButton from "@/components/ui/DownloadButton"
 
-const CriesCard = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
+const CriesCard = ({ pokemon }: { pokemon: PokeAPI.Pokemon.Pokemon }) => {
     return (
         <div className="bg-gray-50 border border-gray-100 shadow-md rounded-lg md:p-6 p-4 max-w-full">
             <h2 className="font-inter font-semibold text-xl text-gray-900">Cries</h2>
@@ -8,13 +8,13 @@ const CriesCard = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                 <dl className="flex items-center justify-between gap-4 py-2">
                     <dt className="font-inter font-medium text-sm text-gray-900 capitalize">Latest</dt>
                     <dd className="font-inter font-normal text-sm text-gray-500">
-                        <DownloadButton href={props.data.cries.latest ?? '#'} />
+                        <DownloadButton href={pokemon.cries.latest ?? '#'} />
                     </dd>
                 </dl>
                 <dl className="flex items-center justify-between gap-4 py-2">
                     <dt className="font-inter font-medium text-sm text-gray-900 capitalize">Legacy</dt>
                     <dd className="font-inter font-normal text-sm text-gray-500">
-                        <DownloadButton href={props.data.cries.legacy ?? '#'} />
+                        <DownloadButton href={pokemon.cries.legacy ?? '#'} />
                     </dd>
                 </dl>
             </div>

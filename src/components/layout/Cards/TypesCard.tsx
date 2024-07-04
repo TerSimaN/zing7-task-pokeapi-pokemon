@@ -2,12 +2,12 @@ import { getIconByTypeName } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-const TypesCard = (props: {data: PokeAPI.Pokemon.Pokemon}) => {
+const TypesCard = ({ pokemon }: { pokemon: PokeAPI.Pokemon.Pokemon }) => {
     return (
         <div className="bg-gray-50 border border-gray-100 shadow-md rounded-lg md:p-6 p-4 max-w-full">
             <h2 className="font-inter font-semibold text-xl text-gray-900">Types</h2>
             <div className="divide-y divide-gray-200 mt-2">
-                {props.data.types.map((type, index) => {
+                {pokemon.types.map((type, index) => {
                     const typeIcon = getIconByTypeName(type.type.name);
                     return (
                         <dl key={index} className="flex items-center justify-between gap-4 py-2">

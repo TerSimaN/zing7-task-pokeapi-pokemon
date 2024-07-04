@@ -5,7 +5,7 @@ import AccordionHeader from "@/components/ui/AccordionHeader";
 import Link from "next/link";
 import ShowMoreLess from "@/components/ui/ShowMoreLess";
 
-const PokemonMoves = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
+const PokemonMoves = ({ pokemon }: { pokemon: PokeAPI.Pokemon.Pokemon }) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -30,7 +30,7 @@ const PokemonMoves = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.data.moves.map((move, index) => (
+                            {pokemon.moves.map((move, index) => (
                                 <TableRow key={index} move={move} />
                             ))}
                         </tbody>
@@ -41,18 +41,18 @@ const PokemonMoves = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
     )
 }
 
-const TableRow = (props: { move: PokeAPI.Pokemon.PokemonMove }) => {
+const TableRow = ({ move }: { move: PokeAPI.Pokemon.PokemonMove }) => {
     const [open, setOpen] = useState(false);
 
     return (
         <>
             <tr className="odd:bg-white even:bg-gray-50 border-b">
                 <th scope="row" className="font-medium text-gray-900 px-6 py-4 capitalize">
-                    {props.move.move.name}
+                    {move.move.name}
                 </th>
                 <td className="px-6 py-4">
-                    <Link href={props.move.move.url} className="font-medium text-blue-600 hover:underline">
-                        {props.move.move.url}
+                    <Link href={move.move.url} className="font-medium text-blue-600 hover:underline">
+                        {move.move.url}
                     </Link>
                 </td>
                 <td className="px-6 py-4">
@@ -85,7 +85,7 @@ const TableRow = (props: { move: PokeAPI.Pokemon.PokemonMove }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {props.move.version_group_details.map((detail, index) => (
+                                {move.version_group_details.map((detail, index) => (
                                     <tr key={index} className="odd:bg-white even:bg-gray-50 border-b">
                                         <th scope="row" className="font-medium text-gray-900 px-6 py-4">
                                             {detail.level_learned_at}

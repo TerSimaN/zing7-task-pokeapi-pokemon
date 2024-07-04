@@ -23,14 +23,14 @@ export default async function TypeDetails(props: Params) {
                     {typeData.name} Type description
                 </h2>
                 <div className="mt-8">
-                    <DamageRelations data={typeData} />
-                    <GameIndices data={typeData.game_indices} dataType="generation" />
-                    <Generation data={typeData.generation} />
-                    <MoveDamage data={typeData.move_damage_class} />
-                    <Moves data={typeData.moves} />
-                    <Names data={typeData.names} />
-                    <PastDamageRelations data={typeData.past_damage_relations} />
-                    <Pokemon data={typeData.pokemon} />
+                    <DamageRelations type={typeData} />
+                    <GameIndices gameIndex={typeData.game_indices} gameIndexType="generation" />
+                    <Generation generation={typeData.generation} />
+                    <MoveDamage moveDamage={typeData.move_damage_class} />
+                    <Moves moves={typeData.moves} />
+                    <Names names={typeData.names} />
+                    <PastDamageRelations pastTypeRelations={typeData.past_damage_relations} />
+                    <Pokemon pokemon={typeData.pokemon} />
                 </div>
             </div>
         </main>

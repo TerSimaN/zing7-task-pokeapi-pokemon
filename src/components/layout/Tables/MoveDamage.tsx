@@ -4,7 +4,7 @@ import AccordionHeader from "@/components/ui/AccordionHeader";
 import Link from "next/link";
 import { useState } from "react";
 
-const MoveDamage = (props: { data: PokeAPI.Utility.NamedAPIResource }) => {
+const MoveDamage = ({ moveDamage }: { moveDamage: PokeAPI.Utility.NamedAPIResource }) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -28,11 +28,11 @@ const MoveDamage = (props: { data: PokeAPI.Utility.NamedAPIResource }) => {
                         <tbody>
                             <tr className="odd:bg-white even:bg-gray-50 border-b">
                                 <th scope="row" className="font-medium text-gray-900 px-6 py-4 capitalize">
-                                    {props.data.name}
+                                    {moveDamage.name}
                                 </th>
                                 <td className="px-6 py-4">
-                                    <Link href={props.data.url} className="font-medium text-blue-600 hover:underline">
-                                        {props.data.url}
+                                    <Link href={moveDamage.url} className="font-medium text-blue-600 hover:underline">
+                                        {moveDamage.url}
                                     </Link>
                                 </td>
                             </tr>

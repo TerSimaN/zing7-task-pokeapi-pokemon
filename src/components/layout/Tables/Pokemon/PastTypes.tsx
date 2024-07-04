@@ -5,7 +5,7 @@ import AccordionHeader from "@/components/ui/AccordionHeader";
 import Link from "next/link";
 import ShowMoreLess from "@/components/ui/ShowMoreLess";
 
-const PastTypes = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
+const PastTypes = ({ pokemon }: { pokemon: PokeAPI.Pokemon.Pokemon }) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -30,7 +30,7 @@ const PastTypes = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.data.past_types.map((pastType, index) => (
+                            {pokemon.past_types.map((pastType, index) => (
                                 <TableRow key={index} pastType={pastType} />
                             ))}
                         </tbody>
@@ -41,18 +41,18 @@ const PastTypes = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
     )
 }
 
-const TableRow = (props: { pastType: PokeAPI.Pokemon.PokemonTypePast }) => {
+const TableRow = ({ pastType }: { pastType: PokeAPI.Pokemon.PokemonTypePast }) => {
     const [open, setOpen] = useState(false);
 
     return (
         <>
             <tr className="odd:bg-white even:bg-gray-50 border-b">
                 <th scope="row" className="font-medium text-gray-900 px-6 py-4 capitalize">
-                    {props.pastType.generation.name}
+                    {pastType.generation.name}
                 </th>
                 <td className="px-6 py-4">
-                    <Link href={props.pastType.generation.url} className="font-medium text-blue-600 hover:underline">
-                        {props.pastType.generation.url}
+                    <Link href={pastType.generation.url} className="font-medium text-blue-600 hover:underline">
+                        {pastType.generation.url}
                     </Link>
                 </td>
                 <td className="px-6 py-4">
@@ -79,7 +79,7 @@ const TableRow = (props: { pastType: PokeAPI.Pokemon.PokemonTypePast }) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {props.pastType.types.map((type, index) => (
+                                {pastType.types.map((type, index) => (
                                     <tr key={index} className="odd:bg-white even:bg-gray-50 border-b">
                                         <th scope="row" className="font-medium text-gray-900 px-6 py-4">
                                             {type.slot}

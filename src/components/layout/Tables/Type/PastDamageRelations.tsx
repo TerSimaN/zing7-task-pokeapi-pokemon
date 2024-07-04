@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import TypeRelationsCard from "../../Cards/TypeRelationsCard";
 
-const PastDamageRelations = (props: { data: PokeAPI.Types.TypeRelationsPast[] }) => {
+const PastDamageRelations = ({ pastTypeRelations }: { pastTypeRelations: PokeAPI.Types.TypeRelationsPast[] }) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -31,7 +31,7 @@ const PastDamageRelations = (props: { data: PokeAPI.Types.TypeRelationsPast[] })
                             </tr>
                         </thead>
                         <tbody>
-                            {props.data.map((pastDamageRelation, index) => (
+                            {pastTypeRelations.map((pastDamageRelation, index) => (
                                 <TableRow key={index} pastDamageRelation={pastDamageRelation} />
                             ))}
                         </tbody>
@@ -42,21 +42,21 @@ const PastDamageRelations = (props: { data: PokeAPI.Types.TypeRelationsPast[] })
     )
 }
 
-const TableRow = (props: { pastDamageRelation: PokeAPI.Types.TypeRelationsPast }) => {
+const TableRow = ({ pastDamageRelation }: { pastDamageRelation: PokeAPI.Types.TypeRelationsPast }) => {
     const [open, setOpen] = useState(false);
 
     return (
         <>
             <tr className="odd:bg-white even:bg-gray-50 border-b">
                 <th scope="row" className="font-medium text-gray-900 px-6 py-4 capitalize">
-                    {props.pastDamageRelation.generation.name}
+                    {pastDamageRelation.generation.name}
                 </th>
                 <td className="px-6 py-4">
                     <Link
-                        href={props.pastDamageRelation.generation.url}
+                        href={pastDamageRelation.generation.url}
                         className="font-medium text-blue-600 hover:underline"
                     >
-                        {props.pastDamageRelation.generation.url}
+                        {pastDamageRelation.generation.url}
                     </Link>
                 </td>
                 <td className="px-6 py-4">
@@ -70,27 +70,27 @@ const TableRow = (props: { pastDamageRelation: PokeAPI.Types.TypeRelationsPast }
                     <div className={`${open ? `` : `hidden`} grid grid-cols-2 gap-6 p-6`}>
                         <TypeRelationsCard
                             name="No damage to"
-                            resourceArray={props.pastDamageRelation.damage_relations.no_damage_to}
+                            resourceArray={pastDamageRelation.damage_relations.no_damage_to}
                         />
                         <TypeRelationsCard
                             name="No damage from"
-                            resourceArray={props.pastDamageRelation.damage_relations.no_damage_from}
+                            resourceArray={pastDamageRelation.damage_relations.no_damage_from}
                         />
                         <TypeRelationsCard
                             name="Half damage to"
-                            resourceArray={props.pastDamageRelation.damage_relations.half_damage_to}
+                            resourceArray={pastDamageRelation.damage_relations.half_damage_to}
                         />
                         <TypeRelationsCard
                             name="Half damage from"
-                            resourceArray={props.pastDamageRelation.damage_relations.half_damage_from}
+                            resourceArray={pastDamageRelation.damage_relations.half_damage_from}
                         />
                         <TypeRelationsCard
                             name="Double damage to"
-                            resourceArray={props.pastDamageRelation.damage_relations.double_damage_to}
+                            resourceArray={pastDamageRelation.damage_relations.double_damage_to}
                         />
                         <TypeRelationsCard
                             name="Double damage from"
-                            resourceArray={props.pastDamageRelation.damage_relations.double_damage_from}
+                            resourceArray={pastDamageRelation.damage_relations.double_damage_from}
                         />
                     </div>
                 </td>

@@ -6,7 +6,7 @@ import { generations, types } from "@/config/constants"
 import { searchFilter } from "@/lib/actions/pokemon"
 import { handleFilterChange } from "@/lib/actions/filter"
 
-const Filter = (props: { searchValue: string, onSearchBarChange: any }) => {
+const Filter = ({ searchValue, onSearchBarChange }: { searchValue: string, onSearchBarChange: any }) => {
     const [searchOpen, setSearchOpen] = useState(false);
     const [filterOpen, setFilterOpen] = useState(false);
 
@@ -27,8 +27,8 @@ const Filter = (props: { searchValue: string, onSearchBarChange: any }) => {
                                 name="search-bar"
                                 type="search"
                                 placeholder="Search"
-                                value={props.searchValue}
-                                onChange={(e) => props.onSearchBarChange(e.target.value)}
+                                value={searchValue}
+                                onChange={(e) => onSearchBarChange(e.target.value)}
                                 disabled
                             />
                         </div>
@@ -58,8 +58,8 @@ const Filter = (props: { searchValue: string, onSearchBarChange: any }) => {
                                 name="search-bar"
                                 type="search"
                                 placeholder="Search"
-                                value={props.searchValue}
-                                onChange={(e) => props.onSearchBarChange(e.target.value)}
+                                value={searchValue}
+                                onChange={(e) => onSearchBarChange(e.target.value)}
                                 disabled
                             />
                         </div>

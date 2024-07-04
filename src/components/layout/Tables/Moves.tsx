@@ -4,7 +4,7 @@ import AccordionHeader from "@/components/ui/AccordionHeader";
 import Link from "next/link";
 import { useState } from "react";
 
-const Moves = (props: { data: PokeAPI.Utility.NamedAPIResource[] }) => {
+const Moves = ({ moves }: { moves: PokeAPI.Utility.NamedAPIResource[] }) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -26,7 +26,7 @@ const Moves = (props: { data: PokeAPI.Utility.NamedAPIResource[] }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.data.map((move, index) => (
+                            {moves.map((move, index) => (
                                 <tr key={index} className="odd:bg-white even:bg-gray-50 border-b">
                                     <th scope="row" className="font-medium text-gray-900 px-6 py-4 capitalize">
                                         {move.name}

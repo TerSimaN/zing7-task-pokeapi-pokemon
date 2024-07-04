@@ -4,7 +4,7 @@ import AccordionHeader from "@/components/ui/AccordionHeader";
 import Link from "next/link";
 import { useState } from "react";
 
-const PokemonAbilities = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
+const PokemonAbilities = ({ pokemon }: { pokemon: PokeAPI.Pokemon.Pokemon }) => {
     const [open, setOpen] = useState(false);
     return (
         <div>
@@ -31,7 +31,7 @@ const PokemonAbilities = (props: { data: PokeAPI.Pokemon.Pokemon }) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {props.data.abilities.map((ability, index) => (
+                            {pokemon.abilities.map((ability, index) => (
                                 <tr key={index} className="odd:bg-white even:bg-gray-50 border-b">
                                     <th scope="row" className="font-medium text-gray-900 px-6 py-4">
                                         {ability.slot}

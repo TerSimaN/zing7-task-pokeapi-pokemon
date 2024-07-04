@@ -4,19 +4,19 @@ import { no_sprite } from "../../../public/assets/images"
 import { getIconByTypeName, getPokemonIdFromResultUrl } from "@/lib/utils"
 import { getPokemonArray, getPokemonById, getPokemonByName } from "@/lib/actions/pokemon"
 
-const PokemonGrid = (props: { resourceArray: PokeAPI.Utility.NamedAPIResource[], searchFilter: string }) => {
-    // console.log(props.resourceArray);
+const PokemonGrid = ({ resourceArray, searchFilter }: { resourceArray: PokeAPI.Utility.NamedAPIResource[], searchFilter: string }) => {
+    // console.log(resourceArray);
     return (
         <section className="bg-white">
             <div className="lg:px-6 sm:px-4 px-8 lg:py-16 py-8 mx-auto max-w-screen-xl">
                 <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
-                    {props.resourceArray.map(async (resource, index) => {
+                    {resourceArray.map(async (resource, index) => {
                         let pokemonId: string = getPokemonIdFromResultUrl(resource.url);
                         let pokemon = (await getPokemonById(pokemonId)) as PokeAPI.Pokemon.Pokemon;
 
                         /* if (
                             pokemon.name.toLowerCase().indexOf(
-                                props.searchFilter.toLowerCase()
+                                searchFilter.toLowerCase()
                             ) === -1
                         ) {
                             return;

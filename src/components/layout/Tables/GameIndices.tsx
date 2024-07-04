@@ -4,11 +4,11 @@ import AccordionHeader from "@/components/ui/AccordionHeader";
 import Link from "next/link";
 import { useState } from "react";
 
-const GameIndices = (props: { data: PokeAPI.Utility.VersionGameIndex[] | PokeAPI.Utility.GenerationGameIndex[], dataType: "version" | "generation" }) => {
+const GameIndices = ({ gameIndex, gameIndexType }: { gameIndex: PokeAPI.Utility.VersionGameIndex[] | PokeAPI.Utility.GenerationGameIndex[], gameIndexType: "version" | "generation" }) => {
     const [open, setOpen] = useState(false);
     let name: string = "";
     let url: string = "";
-    if (props.dataType === "version") {
+    if (gameIndexType === "version") {
         name = "Version name";
         url = "Version url";
     } else {
@@ -38,7 +38,7 @@ const GameIndices = (props: { data: PokeAPI.Utility.VersionGameIndex[] | PokeAPI
                             </tr>
                         </thead>
                         <tbody>
-                            {props.data.map((gameIndex, index) => {
+                            {gameIndex.map((gameIndex, index) => {
                                 if ("version" in gameIndex) {
                                     return (
                                         <tr key={index} className="odd:bg-white even:bg-gray-50 border-b">

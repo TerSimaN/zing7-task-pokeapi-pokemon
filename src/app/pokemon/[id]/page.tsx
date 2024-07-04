@@ -25,22 +25,22 @@ export default async function PokemonDetails(props: Params) {
             <div className="grid lg:grid-cols-5 grid-cols-1 lg:gap-8 max-w-screen-xl">
                 <div className="col-span-3 w-full">
                     <h2 className="font-inter font-semibold sm:text-2xl text-xl text-gray-900">Pokemon description</h2>
-                    <PokemonDescription data={pokemonData} />
-                    <PokemonSprites data={pokemonData} />
+                    <PokemonDescription pokemon={pokemonData} />
+                    <PokemonSprites pokemon={pokemonData} />
                     <div className="mt-8">
-                        <PokemonAbilities data={pokemonData} />
-                        <PokemonForms data={pokemonData} />
-                        <GameIndices data={pokemonData.game_indices} dataType="version" />
-                        <HeldItems data={pokemonData} />
-                        <PokemonMoves data={pokemonData} />
-                        <PastTypes data={pokemonData} />
+                        <PokemonAbilities pokemon={pokemonData} />
+                        <PokemonForms pokemon={pokemonData} />
+                        <GameIndices gameIndex={pokemonData.game_indices} gameIndexType="version" />
+                        <HeldItems pokemon={pokemonData} />
+                        <PokemonMoves pokemon={pokemonData} />
+                        <PastTypes pokemon={pokemonData} />
                     </div>
                 </div>
                 <div className="col-span-2 lg:block grid sm:grid-cols-2 grid-cols-1 gap-4 lg:space-y-4 lg:mt-0 mt-4 w-full">
-                    <StatsCard data={pokemonData} />
-                    <TypesCard data={pokemonData} />
-                    <SpeciesCard data={pokemonData} />
-                    <CriesCard data={pokemonData} />
+                    <StatsCard pokemon={pokemonData} />
+                    <TypesCard pokemon={pokemonData} />
+                    <SpeciesCard pokemon={pokemonData} />
+                    <CriesCard pokemon={pokemonData} />
                 </div>
             </div>
         </main>

@@ -65,9 +65,9 @@ export default async function Home(props: Params) {
 
   return (
     <main className="flex flex-col sm:justify-between sm:px-24 xl:pt-12 pt-4 min-h-screen">
-      <Filter searchValue={"searchValue"} onSearchBarChange={"setSearchValue"} />
+      <Filter searchValue={""} onSearchBarChange={"setSearchValue"} />
       <Suspense fallback={<PokemonGridLoading />}>
-        <PokemonGrid resourceArray={resourceArray} searchFilter={"searchValue"} />
+        <PokemonGrid resourceArray={resourceArray} searchFilter={""} />
       </Suspense>
       <Pagination offset={offset} entries={entries} />
     </main>

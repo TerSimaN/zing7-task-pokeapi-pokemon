@@ -6,14 +6,14 @@ import { useState } from "react";
 import PreviousPageButton from "../ui/PreviousPageButton";
 import NextPageButton from "../ui/NextPageButton";
 
-const Pagination = (props: { offset: number, entries: number }) => {
+const Pagination = ({ offset, entries, onPageChange }: { offset: number, entries: number, onPageChange?: (value: string | number) => void }) => {
     const [onPage, setOnPage] = useState(0);
     const [previousPage, setPreviousPage] = useState(1);
     const [nextPage, setNextPage] = useState(2);
 
-    let count: number = props.entries;
-    let fromEntry: number = 1 + props.offset;
-    let toEntry: number = (50 + props.offset) > count ? count : (50 + props.offset);
+    let count: number = entries;
+    let fromEntry: number = 1 + offset;
+    let toEntry: number = (50 + offset) > count ? count : (50 + offset);
     let pageNumbers = createPageNumbersArray(count);
 
     function handlePreviousPage() {
@@ -59,7 +59,12 @@ const Pagination = (props: { offset: number, entries: number }) => {
                 Showing <span className="font-semibold text-gray-900">{fromEntry}</span> to <span className="font-semibold text-gray-900">{toEntry}</span> of <span className="font-semibold text-gray-900">{count}</span> Entries
             </span>
             <nav className="flex items-center md:justify-normal justify-between -space-x-px font-inter text-sm sm:mt-0 mt-4 h-8 sm:max-w-sm lg:max-w-xl 2xl:max-w-none">
-                <button onClick={handlePreviousPage}>
+                <button onClick={() => {
+                    handlePreviousPage();
+                    if (onPageChange) {
+                        onPageChange(previousPage);
+                    }
+                }}>
                     <PreviousPageButton href={`?page=${previousPage}`} />
                 </button>
                 <ul className="hidden md:flex items-center -space-x-px overflow-x-auto">
@@ -72,13 +77,23 @@ const Pagination = (props: { offset: number, entries: number }) => {
                                         `text-blue-500 bg-blue-50 border-blue-300 hover:bg-blue-100 hover:text-blue-700` :
                                         `text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700`
                                     } px-3 h-8`}
-                                onClick={() => handleCurrentPage(pageNumber, index)}>
+                                onClick={() => {
+                                    handleCurrentPage(pageNumber, index);
+                                    if (onPageChange) {
+                                        onPageChange(pageNumber.number);
+                                    }
+                                }}>
                                 {pageNumber.number}
                             </Link>
                         </li>
                     ))}
                 </ul>
-                <button onClick={handleNextPage}>
+                <button onClick={() => {
+                    handleNextPage();
+                    if (onPageChange) {
+                        onPageChange(nextPage);
+                    }
+                }}>
                     <NextPageButton href={`?page=${nextPage}`} />
                 </button>
             </nav>
